@@ -1,0 +1,76 @@
+<ion-content class="ion-padding">
+  <div class="logo">
+    <ion-img src="assets/icon/logoApp.png"></ion-img>
+  </div>
+
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="mail" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="signInForm.get('email').hasError('email')" class="ion-text-center">
+        <p class="errorMsg">* Por favor proporcione una cuenta de correo electrónico válida</p>
+      </ion-text>
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="key" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="password"
+          formControlName="password"
+          placeholder="password"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="signInForm.get('password').hasError('minlength')" class="ion-text-center">
+        <p class="errorMsg">* Proporcione una contraseña válida. Al menos debe tener un longitud de 8 carateres</p>
+      </ion-text>
+      <ion-button
+        [disabled]="!signInForm.valid"
+        expand="block"
+        shape="round"
+        type="submit"
+        color="primary"
+      >
+      Registrarse
+      </ion-button>
+      <ion-text color="danger" *ngIf="credentials && signInForm.valid" class="ion-text-center">
+        <p class="errorMsg">Las credenciales son incorrectas</p>
+      </ion-text>
+    </ion-list>
+    <ion-text color="primary" class="ion-text-center redirect" routerLink="/login/sign-up">
+      <p class="marginTop">
+        No tienes una cuenta?
+        <b>Regístrate</b>
+      </p>
+    </ion-text>
+    <ion-text color="primary" class="ion-text-center redirect" routerLink="/login/reset-password">
+      <p>
+        Has olvidado tu contraseña?
+        <b>Resetea la contraseña?</b>
+      </p>
+    </ion-text>
+    <ion-button
+    expand="block"
+    shape="round"
+    type="submit"
+    color="danger"
+    (click)="closingApp()"
+  >
+    SALIR
+  </ion-button>
+  </form>
+  <!--
+ <ion-alert
+  trigger="present-alert"
+  header="Alert"
+  subHeader="Important message"
+  message="This is an alert!"
+  [buttons]="alertButtons"
+></ion-alert>
+  -->
+ 
+ 
+</ion-content>

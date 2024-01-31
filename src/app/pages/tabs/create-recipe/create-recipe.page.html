@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="logOutStyles">
+     <ion-img src="assets/icon/logoAppToolBar.png" class="logo-image"></ion-img>
+      <ion-title color="dark" class="title-container">
+        <span>Crear receta</span>
+        <p class="user">{{userEmail}}</p>
+      </ion-title>
+      <app-log-out></app-log-out>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <div class="container form-container">
+      <div class="row">
+        <div class="col">
+          <div class="card border-0 my-4">
+            <div class="card-header bg-secondary text-white">
+              <h1 class="ion-text-center" style="color:goldenrod">Crear una nueva receta</h1>
+            </div>
+            <div *ngIf="dynamicForm">
+              <form
+                #form="ngForm"
+                [formGroup]="dynamicForm"
+                #rootForm
+                novalidate
+                role="form"
+              >
+                <div class="card-body pt-1">
+                  <ng-container *ngIf="initConfiguration">
+                    <div *ngFor="let group of initConfiguration.groups">
+                      <h2 *ngIf="group.name" class="ion-text-center title">
+                        {{group.name}}
+                      </h2>
+                      <h3 *ngIf="group.description" class="ion-text-center">
+                        {{group.name}}
+                      </h3>
+                      <div class="row w-100 ml-0">
+                        <ng-container *ngFor="let question of group.questions">
+                          <app-form-questions
+                            *ngIf="dynamicForm"
+                            [ngClass]="question.controlCols"
+                            [question]="question"
+                            [parentForm]="dynamicForm"
+                            [formDirective]="form"
+                            [showError]="showError"
+                          ></app-form-questions>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <app-file-upload [resetInputFile]="resetInputFileOnSubmitted"
+                    (fileUploaded)="onFileUploaded($event)"
+                  ></app-file-upload>
+                </div>
+                <div class="card-footer ion-text-center">
+                  <ng-container
+                    *ngIf="showErrorMsg() && !selectedUploadFile">
+                    <ion-item class="error-item" lines="none">
+                      <ion-text color="danger">Recuerda subir una imágen para tu receta</ion-text>
+                    </ion-item>
+                  </ng-container>
+                  <div class="ion-margin">
+                    <ion-button
+                      (click)="cleanForm()"
+                      expand="full"
+                      color="danger"
+                    >
+                      Resetear Formulario
+                    </ion-button>
+                    <ion-button
+                      expand="full"
+                      color="secondary"
+                      (click)="createRecipes()"
+                    >
+                      Crea una nueva receta
+                    </ion-button>
+                    <ng-container *ngIf="showErrorMsg()">
+                      <h2 class="text-danger">
+                        <small class="border-bottom pb-1"
+                          ><strong
+                            >*Algun campo requiere su atención.</strong
+                          ></small
+                        >
+                      </h2>
+                    </ng-container>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,33 @@
+<ng-container *ngIf="question.choices">
+  <ion-grid>
+    <ion-radio-group
+      [(ngModel)]="selectedChoice"
+      (ionChange)="onRadioSelect()"
+      [formControl]="name"
+      [id]="question.id"
+      [name]="question.name"
+    >
+      <ion-row
+        class="ion-wrap"
+        *ngFor="let choice of question.choices; let i = index"
+      >
+        <ion-col class="col-10 ion-align-self-start">
+          <ion-item  lines="none">
+            <ion-radio slot="start" [value]="choice.key"></ion-radio>
+            <div class="ion-text-wrap" [innerHtml]="choice.value"></div>
+          </ion-item>
+        </ion-col>
+        <ion-col class="col-2 ion-align-self-center custom-col-img">
+          <ion-avatar>
+            <ion-img src="{{question.extra}}/{{ choice.img }}" alt="Imagen"></ion-img>
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+    <ng-container *ngIf="validField() && showError">
+      <ion-item lines="none" class="error-item">
+        <ion-text color="danger">Campo requerido</ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-grid>
+</ng-container>

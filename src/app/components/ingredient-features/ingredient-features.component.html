@@ -1,0 +1,17 @@
+
+  <div>
+  <ion-list class="ingredient-list">
+    <ng-container *ngFor="let item of ingredientFeature;let i = index">
+      <ion-item  class="ingredient-item">
+        <ion-input name="inp" label="Cal/100g" type="number" (ionFocus)="onFocus($event)" label-placement="floating"  placeholder="Calorías" [(ngModel)]="item.calories" class="ingredient-quantity"></ion-input>
+        <ion-input name="inp" label="Gr/100g" type="number" (ionFocus)="onFocus($event)" label-placement="floating"  placeholder="Grasas" [(ngModel)]="item.fat" class="ingredient-quantity"></ion-input>
+        <ion-input name="inp" label="Prot/100g" type="number" (ionFocus)="onFocus($event)" label-placement="floating"  placeholder="Proteínas" [(ngModel)]="item.protein" class="ingredient-quantity"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="validField(i) && showError" lines="none" class="error-item">
+        <ion-text color="danger">Campo requerido. Completa los datos nutricionales del ingrediente.(Los valores deben de ser mayor que cero)</ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</div>
+
+

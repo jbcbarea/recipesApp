@@ -1,0 +1,71 @@
+<ion-accordion-group #accordionGroup>
+  <ion-accordion>
+    <ion-item slot="header" class="list-accordion-header">
+      <!-- TODO:
+        VER LO DE QUE SE OCULTEN PARA MÓVIL Eso queda e¡que sean responsive!!!...
+      <ion-img src="assets/img/{{ question.img }}"></ion-img> 
+      -->
+      <ion-img src="assets/img/list-accordion-images/{{ question.img }}" ></ion-img> 
+      <ion-label class="ion-text-wrap m-2"><strong>  {{ question.label }}</strong></ion-label>
+    </ion-item>
+    <div slot="content">
+      <ion-row class="ion-wrap ion-align-items-center">
+        <ion-col size-lg="4" size-md="9">
+          <ion-item lines="none" class="check_box">
+            <ion-label class="ion-text-wrap text-sm"><strong><em>Ingredientes</em></strong></ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="3" size-md="3">
+          <ion-item lines="none">
+            <ion-label class="text-sm"><strong><em>Calorías/100g-100ml</em></strong></ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="2" class="ion-hide-md-down">
+          <ion-item lines="none">
+            <ion-label class="text-sm"><strong><em>Grasas/100g-100ml</em></strong></ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="3"class="ion-hide-md-down">
+          <ion-item lines="none">
+            <ion-label class="text-sm"><strong><em>Proteínas/100g-100ml</em></strong></ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div slot="content">
+      <ion-row class="ion-wrap ion-align-items-center" *ngFor="let item of accordionRowData; let i = index">
+        <ion-col size-lg="4" size-md="9">
+          <ion-item lines="none" class="check_box">
+            <ion-checkbox
+              [id]="question.id"
+              [name]="question.name"
+              slot="start"
+              labelPlacement="end"
+              (ionChange)="onCheckboxChange(accordionRowData[i].name,$event)"
+              [(ngModel)]="accordionRowData[i].checked"
+            >
+              <div class="ion-text-wrap text-sm">
+                {{ accordionRowData[i].name }}
+              </div>
+            </ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="3" class="ion-hide-md-down">
+          <ion-item lines="none">
+            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].fats }}/100 g.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="2" size-md="3">
+          <ion-item lines="none">
+            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].calories }}/100 g</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size-lg="3" class="ion-hide-md-down">
+          <ion-item lines="none">
+            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].proteins }}/100 g</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>

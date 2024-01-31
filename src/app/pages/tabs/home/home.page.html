@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="logOutStyles">
+     <ion-img src="assets/icon/logoAppToolBar.png" class="logo-image"></ion-img>
+      <ion-title color="dark" class="title-container">
+        <span>Principal</span>
+        <p class="user">{{userEmail}}</p>
+      </ion-title>
+      <app-log-out></app-log-out>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <ion-card style=" border: none;">
+  <app-banner (recipeTypeSelected)="onRecipeTypeSelected($event)"></app-banner>
+  <app-search-bar [recipes]="recipes" (recipesFoundEvent)="handleRecipesFound($event)"></app-search-bar>
+  <ion-list>
+    <ion-list-header class="ion-margin-bottom">
+      <ion-label>
+        <h4 class="header-recipes">Recetas</h4>
+        <p>Descubre nuevas recetas</p>
+      </ion-label>
+    </ion-list-header>
+    <div *ngIf="!recipesAll">Cargando...</div>
+    <ion-item-group *ngIf="recipesAll?.length > 0">
+      <app-list-recipes *ngFor="let recipe of recipesAll" [recipe]="recipe" (click)="navigateToFullRecipes(recipe.id)" ></app-list-recipes>
+      <!--[routerLink]="['/','tabs','recipes',recipe.id]"-->
+    </ion-item-group>
+    <ng-container *ngIf="recipesAll.length === 0">
+      <ion-list-header>
+      <ion-label>
+        <h4 class="notFoundMsg">Lo siento no hay recetas por ese criterio de búsqueda : "{{recipesFound}}" (Pulsar enter en vacío para mostrar todas las recetas) </h4>
+      </ion-label>
+    </ion-list-header>
+    </ng-container>
+  </ion-list>
+</ion-card>
+</ion-content>

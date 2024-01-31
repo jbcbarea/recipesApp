@@ -1,0 +1,155 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle recetas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+<div *ngIf="!recipe_Full">Cargando...</div>
+<div *ngIf="recipe_Full">
+  <ion-card class="recipe-card">
+    <ion-img class="recipeImg" [src]="recipe_Full.imagenreceta"></ion-img>
+    <ion-card-header>
+      <ion-card-title  class="list-header">{{recipe_Full.nombrereceta}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row class="recipe-info">
+        <ion-col size="6" class="info-item">
+          <ion-icon name="flame" class="info-icon"></ion-icon>
+          {{recipe_Full.nombrereceta}}
+        </ion-col>
+        <ng-container *ngIf="!comenFilter">
+        <ion-col size="6" class="info-item">
+          <ion-icon name="people" class="info-icon"></ion-icon>
+          Comensales: {{recipe_Full.comensales}}
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="comenFilter">
+        <ion-col size="6" class="info-item">
+          <ion-icon name="people" class="info-icon"></ion-icon>
+          Comensales: {{comenFilter}}
+        </ion-col>
+      </ng-container>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="timer" class="info-icon"></ion-icon>
+          Tiempo de Preparación: 45 min
+        </ion-col>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="star" class="info-icon"></ion-icon>
+          Dificultad: Media
+        </ion-col>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="calendar" class="info-icon"></ion-icon>
+          Creado en: 22 - 10 - 2023
+        </ion-col>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="person" class="info-icon"></ion-icon>
+          Creado por: pacome@gmail.com
+        </ion-col>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="stats-chart" class="info-icon"></ion-icon>
+          Puntuación: {{this.recipeScoring}}
+        </ion-col>
+        <ion-col size="6" class="info-item">
+          <ion-icon name="thumbs-up" class="info-icon"></ion-icon>
+          Votaciones: {{this.recipeVotes}}
+        </ion-col>
+      </ion-row>
+      <!--
+          <ion-list class="ingredients-list">
+        <ion-list-header class="list-header">Ingredientes</ion-list-header>
+        <ion-item class="ingredient-item">
+          <ion-label class="ingredient-label">Aceite de Oliva</ion-label>
+          <ion-note class="ingredient-quantity">2 cucharadas</ion-note>
+        </ion-item>
+        <ion-item class="ingredient-item">
+          <ion-label class="ingredient-label">Cebolla</ion-label>
+          <ion-note class="ingredient-quantity">1 unidad</ion-note>
+        </ion-item>
+        <ion-item class="ingredient-item">
+          <ion-label class="ingredient-label">Tomates</ion-label>
+          <ion-note class="ingredient-quantity">4 unidades</ion-note>
+        </ion-item>
+        <ion-item class="ingredient-item">
+          <ion-label class="ingredient-label">Spaghetti</ion-label>
+          <ion-note class="ingredient-quantity">300g</ion-note>
+        </ion-item>
+        <ion-item class="ingredient-item">
+          <ion-label class="ingredient-label">Queso Parmesano</ion-label>
+          <ion-note class="ingredient-quantity">50g</ion-note>
+        </ion-item>
+      </ion-list>
+      -->
+      <ion-list class="ingredients-list">
+        <ion-list-header class="list-header">Ingredientes</ion-list-header>
+        <ion-item class="ingredient-item" *ngFor="let ingredient of recipe_Full.ingredientes;let i=index" >
+          <ion-note class="ingredient-label">{{ingredient}}</ion-note>
+          <ion-note class="ingredient-quantity">{{recipe_Full.cantidades[i]}}</ion-note>
+          <ion-note class="ingredient-quantity">{{recipe_Full.unidades_metricas[i]}}</ion-note>
+        </ion-item>
+        <!-- Agrega más ingredientes aquí -->
+      </ion-list>
+      <ion-list class="instructions-list">
+        <ion-list-header class="list-header">Preparación</ion-list-header>
+        <ion-item class="instruction-item" *ngFor="let pasos of recipe_Full.pasos_receta;let i=index" >
+          <ion-note class="ingredient-label">{{pasos}}</ion-note>
+        </ion-item>
+      </ion-list>
+      <ion-row class="recipe-actions">
+        <ng-container *ngIf="!comenFilter">
+        <ion-col size="12" class="ion-text-center">
+          <ion-label class="list-header">Calorías totales de la receta para {{recipe_Full.comensales}} comensales:</ion-label>
+        </ion-col>
+      </ng-container>
+      <ng-container *ngIf="comenFilter">
+        <ion-col size="12" class="ion-text-center">
+          <ion-label class="list-header">Calorías totales de la receta para {{comenFilter}} comensales:</ion-label>
+        </ion-col>
+      </ng-container>
+        <ion-col size="12" class="ion-text-center">
+          <ion-label class="calories">{{recipeCalories}} cal.</ion-label>
+        </ion-col>
+        <ion-col size="12" class="ion-text-center">
+          <ion-label class="list-header">Puntuar receta:</ion-label>
+        </ion-col>
+        <ion-col size="12" class="action-item ion-text-center">
+          <ion-range [min]="0" [max]="10" [value]="0" [pin]="true" [ticks]="true" [disabled]="isVoting" [(ngModel)]="selectedRating"></ion-range>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row class="recipe-actions">
+        <ion-col size="12" class="action-item">
+          <ion-button expand="block" color="primary" shape="round" (click)="submitRating()" [disabled]="isVoting">Puntuar Receta </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="recipe-actions">
+        <ion-col size="12" class="action-item">
+          <ion-button expand="block" color="primary" shape="round" (click)="submitDeleteRating()" [disabled]="!isVoting">Resetear puntuación de la receta</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="recipe-actions">
+      <ion-col size="12" class="ion-text-center">
+        <ion-label class="list-header">Añadir/eliminar receta de favoritos</ion-label>
+      </ion-col>
+      </ion-row>
+      <ion-row class="recipe-actions">
+        <ion-col size="12" class="action-item">
+          <ion-button [disabled]="favouriteRecipe" expand="full" shape="round" color="secondary" (click)="addToFavorites()">Añadir a Favoritas</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="recipe-actions">
+        <ion-col size="12" class="action-item">
+          <ion-button [disabled]="!favouriteRecipe" expand="full" shape="round" color="tertiary" (click)="deleteFromFavourites()">Eliminar de favoritas</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="recipe-actions">
+        <ion-col size="12" class="action-item">
+          <ion-button expand="full" shape="round" class="custom-button" (click)="generatePdf()">Generar pdf</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

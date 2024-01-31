@@ -1,0 +1,74 @@
+<!--
+<div class="card-body pt-1">
+  <h2 class="ion-text-center title">Subir imagen de la receta</h2>
+  <ion-item class="ion-text-center" lines="none">
+    <input 
+      type="file"
+      name="image"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      #fileInput
+    />
+  </ion-item>
+  <ion-item *ngIf="imageUrl && selectedFile" class="ion-text-center" lines="none">
+    <img [src]="imageUrl" class="imageUpload" alt="Imagen subida" />
+  </ion-item>
+  <ion-item class="ion-text-center">
+    <ion-button (click)="upload()" expand="full" color="primary"
+      >Subir</ion-button
+    >
+    <ng-container *ngIf="uploadAttemptSuccess">
+
+     <ion-icon name="checkmark-circle-outline"  [ngStyle]="{'color': 'green'}"></ion-icon>
+    </ng-container>
+  
+  </ion-item>
+  <ion-item
+  *ngIf="!selectedFile && uploadAttempted"
+  lines="none"
+  class="error-item"
+>
+  <ion-text color="danger"
+    >Campo requerido. Tienes que seleccionar una imágen</ion-text
+  >
+</ion-item>
+</div>
+
+-->
+<div class="card-body pt-1">
+  <h2 class="ion-text-center title">Subir imagen de la receta</h2>
+  <ion-item class="ion-text-center" lines="none">
+    <input 
+      *ngIf="!isMobileVariable"
+      type="file"
+      name="image"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      #fileInput
+    />
+    <ion-button
+      *ngIf="isMobileVariable"
+      expand="full"
+      color="primary"
+      (click)="takePicture()"
+    >
+      Tomar Foto
+    </ion-button>
+  </ion-item>
+  <ion-item *ngIf="imageUrl && selectedFile" class="ion-text-center" lines="none">
+    <img [src]="imageUrl" class="imageUpload" alt="Imagen subida" />
+  </ion-item>
+  <ion-item class="ion-text-center">
+    <ion-button (click)="upload()" expand="full" color="primary"
+      >Subir</ion-button
+    >
+    <ng-container *ngIf="uploadAttemptSuccess">
+      <ion-icon name="checkmark-circle-outline" [ngStyle]="{ color: 'green' }"></ion-icon>
+    </ng-container>
+  </ion-item>
+  <ion-item *ngIf="!selectedFile && uploadAttempted" lines="none" class="error-item">
+    <ion-text color="danger"
+      >Campo requerido. Tienes que seleccionar una imágen</ion-text
+    >
+  </ion-item>
+</div>

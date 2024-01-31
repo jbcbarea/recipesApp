@@ -1,0 +1,32 @@
+
+<ion-item >
+  <ion-label class="selectLabel" position="floating">{{question.label}}</ion-label>
+  <ion-select
+    [formControl]="name"
+    [id]="question.id"
+    [name]="question.name"
+  >
+    <ion-select-option
+      selected
+      [disabled]="question.required"
+      value=""
+      >Seleccione una opción...</ion-select-option
+    >
+    <ion-select-option
+      *ngFor="let choice of question.choices"
+      [value]="choice.key || choice.value"
+      >{{
+        question.extra === 'concat' &&
+        choice.key &&
+        choice.key !== 'Se desconoce'
+          ? choice.key + ' | ' + choice.value
+          : choice.value
+      }}</ion-select-option>
+  </ion-select>
+</ion-item>
+<ng-container *ngIf="validField() && showError === true">
+  <ion-item *ngIf="name.errors?.['required']" class="error-item"lines="none">
+    <ion-text color="danger" >Campo requerido</ion-text>
+  </ion-item>
+</ng-container>
+

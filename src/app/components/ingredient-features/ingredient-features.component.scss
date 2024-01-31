@@ -1,0 +1,28 @@
+.ingredient-item  {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .error-item {
+    width: 100%;
+    font-size: 10px;
+    margin-left: 1rem;
+  }
+  
+  .ingredient-quantity {
+    width: 90%;
+  }
+
+  .button-row {
+    margin-left: 2rem;
+  }
+  ion-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  
+  }
+  
+  ion-input {
+    padding: 2rem;
+    margin-right: 30px;
+  }

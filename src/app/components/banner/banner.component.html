@@ -1,0 +1,29 @@
+
+    <swiper-container class="borderBottom"
+      [modules]="swiperModules"
+      [slidesPerView]="1"
+      [spaceBetween]="20"
+      [keyboard]="true"
+      [pagination]="{ clickable: true, dynamicBullets: true }"
+    >
+      <swiper-slide
+        class="swiper-slide-custom"
+        *ngFor="let recipe of recipesTypes; let i = index"
+        (click)="handleRecipeClick(i)"
+        [ngClass]="{'recipeClicked': i === clickedRecipeIndex}"
+      >
+        <div class="slide-content">
+          <img src="assets/img/banner-images/{{recipe.image}}" alt="{{ recipe.title }}" />
+          <div class="overlay">
+            <ion-text class="slide-text">{{ recipe.title }}</ion-text>
+            <ion-avatar>
+              <ion-img
+                src="assets/img/banner-images/{{ recipe.icon }}"
+                alt="Imagen"
+              ></ion-img>
+            </ion-avatar>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+

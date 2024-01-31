@@ -1,0 +1,41 @@
+.logo {
+    margin: 5vh auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ ion-img {
+   max-width: 150px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ 
+ 
+.errorMsg {
+    font-size: 0.7rem;
+}
+
+ion-button {
+    margin-top: 5vh;
+}
+
+.marginTop {
+    margin-top: 5vh;
+}
+.redirect {
+  transition: transform 0.3s ease-in-out; 
+}
+
+.redirect:hover {
+  transform: scale(1.1);
+  cursor: pointer; 
+}
+@media screen and (min-width: 1200px) {
+    form {
+      margin-left: 20rem;
+      margin-right: 20rem;
+    }
+  }

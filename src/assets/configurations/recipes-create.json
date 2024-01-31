@@ -1,0 +1,353 @@
+{
+  "name": "Create-Recipes-Form",
+  "groups": [
+    {
+      "name": "1.- Introduce el nombre de la receta",
+      "order": 1,
+      "questions": [
+        {
+          "id": 1,
+          "name": "recipe-name",
+          "extra": "Introduce el nombre de tu receta",
+          "label": "Introduce Nombre de Receta",
+          "questionTypeId": 6,
+          "order": 1,
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "2.- Rellena los siguientes campos de tu receta",
+      "order": 1,
+      "questions": [
+        {
+          "id": 2,
+          "name": "world-recipes",
+          "label": "Recetas del mundo",
+          "questionTypeId": 3,
+          "order": 1,
+          "required": true,
+          "choices": [
+            {
+              "key": "spain",
+              "value": "Comida Española",
+              "order": 1
+            },
+            {
+              "key": "france",
+              "value": "Comida Francesa",
+              "order": 2
+            },
+            {
+              "key": "portugal",
+              "value": "Comida Portuguesa",
+              "order": 3
+            },
+            {
+              "key": "mexico",
+              "value": "Comida Mejicána",
+              "order": 4
+            },
+            {
+              "key": "china",
+              "value": "Comida China",
+              "order": 5
+            },
+            {
+              "key": "japan",
+              "value": "Comida Japonesa",
+              "order": 6
+            },
+            {
+              "key": "greece",
+              "value": "Comida Griega",
+              "order": 7
+            },
+            {
+              "key": "germany",
+              "value": "Comida Alemana",
+              "order": 8
+            },
+            {
+              "key": "italy",
+              "value": "Comida Italiana",
+              "order": 9
+            },
+            {
+              "key": "england",
+              "value": "Comida Inglésa",
+              "order": 10
+            },
+            {
+              "key": "no-aply",
+              "value": "No aplica",
+              "order": 11
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "guest-number",
+          "label": "Número de Comensales",
+          "questionTypeId": 3,
+          "order": 2,
+          "required": true,
+          "choices": [
+            {
+              "key": "1",
+              "value": "1",
+              "order": 1
+            },
+            {
+              "key": "2",
+              "value": "2",
+              "order": 2
+            },
+            {
+              "key": "3",
+              "value": "3",
+              "order": 3
+            },
+            {
+              "key": "4",
+              "value": "4",
+              "order": 4
+            },
+            {
+              "key": "5",
+              "value": "5",
+              "order": 5
+            },
+            {
+              "key": "6",
+              "value": "6",
+              "order": 6
+            },
+            {
+              "key": "7",
+              "value": "7",
+              "order": 7
+            },
+            {
+              "key": "8",
+              "value": "8",
+              "order": 8
+            },
+            {
+              "key": "9",
+              "value": "9",
+              "order": 9
+            },
+            {
+              "key": "10",
+              "value": "10",
+              "order": 10
+            },
+            {
+              "key": "15",
+              "value": "15",
+              "order": 11
+            },
+            {
+              "key": "20",
+              "value": "20",
+              "order": 12
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "difficulty",
+          "label": "Dificultad",
+          "questionTypeId": 3,
+          "order": 3,
+          "required": true,
+          "choices": [
+            {
+              "key": "Facil",
+              "value": "Fácil",
+              "order": 1
+            },
+            {
+              "key": "Media",
+              "value": "Media",
+              "order": 2
+            },
+            {
+              "key": "Dificil",
+              "value": "Difícil",
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "prep-time",
+          "label": "Tiempo de preparación",
+          "questionTypeId": 3,
+          "order": 4,
+          "required": true,
+          "choices": [
+            {
+              "key": "15",
+              "value": "Tiempo de preparación 15 min o menos",
+              "order": 1
+            },
+            {
+              "key": "30",
+              "value": "Tiempo de preparación 30 min o menos",
+              "order": 2
+            },
+            {
+              "key": "45",
+              "value": "Tiempo de preparación 45 min o menos",
+              "order": 3
+            },
+            {
+              "key": "60",
+              "value": "Tiempo de preparación 60 min o menos",
+              "order": 4
+            },
+            {
+              "key": "90",
+              "value": "Tiempo de preparación 90 min o menos",
+              "order": 5
+            },
+            {
+              "key": "150",
+              "value": "Tiempo de preparación 150 min o menos",
+              "order": 6
+            },
+            {
+              "key": "200",
+              "value": "Tiempo de preparación más de 150 min",
+              "order": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2.- Elegir receta por horario de consumo",
+      "order": 1,
+      "questions": [
+        {
+          "id": 7,
+          "name": "time-consume",
+          "label": "Tiempo de consumo",
+          "questionTypeId": 1,
+          "order": 1,
+          "required": true,
+          "extra": "concat",
+          "choices": [
+            {
+              "key": "Desayuno",
+              "value": "Desayuno",
+              "order": 1,
+              "img": "breakfast.png"
+            },
+            {
+              "key": "Aperitivo",
+              "value": "Aperitivo",
+              "order": 2,
+              "img": "apperitive.png"
+            },
+            {
+              "key": "Comida",
+              "value": "Almuerzo",
+              "order": 3,
+              "img": "meal.png"
+            },
+            {
+              "key": "Merienda",
+              "value": "Merienda",
+              "order": 4,
+              "img": "supper.png"
+            },
+            {
+              "key": "Cena",
+              "value": "Cena",
+              "order": 5,
+              "img": "dinner.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3.- Filtro de recetas basado en restricciones alimentarias",
+      "order": 1,
+      "questions": [
+        {
+          "name": "restricciones-alimentarias",
+          "questionTypeId": 5,
+          "order": 1,
+          "extra":"assets/img/restricted-food",
+          "choices": [
+            {
+              "key": "gluten-free",
+              "value": "Cocina Sin Glúten",
+              "order": 1,
+              "img": "gluten.png"
+            },
+            {
+              "key": "no-dairy",
+              "value": "Cocina Sin lácteos",
+              "order": 2,
+              "img": "dairy.png"
+            },
+            {
+              "key": "no-egg",
+              "value": "Cocina Sin Huevos",
+              "order": 3,
+              "img": "eggs.png"
+            },
+            {
+              "key": "no-nuts",
+              "value": "Cocina Sin Frutos Secos",
+              "order": 4,
+              "img": "peanut.png"
+            },
+            {
+              "key": "no-seafood",
+              "value": "Cocina Sin Mariscos",
+              "order": 5,
+              "img": "shellfish.png"
+            },
+            {
+              "key": "no-aply",
+              "value": "No aplica",
+              "order": 5,
+              "img": "no-restriction.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4.- Introduce los ingredientes de la receta",
+      "order": 1,
+      "questions": [
+        {
+          "name": "recipe-ingredients",
+          "label": "Añade los ingredientes de tu receta",
+          "questionTypeId": 2,
+          "required": true
+        }
+      ]
+    },{
+      "name": "5.- Añade los pasos de tu receta",
+      "order": 1,
+      "questions": [
+        {
+          "id": 10,
+          "name": "recipe-steps",
+          "label": "Pasos de tu receta",
+          "questionTypeId": 7,
+          "order": 9,
+          "required": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<ion-item>
+  <ion-input
+  [formControl]="name"
+  [id]="question.id"
+  [name]="question.name"
+    label={{question.label}}
+    labelPlacement="stacked"
+    [clearInput]="true"
+    placeholder={{question.extra}}
+    value="Default value"
+  >
+  </ion-input>
+</ion-item>
+<ng-container *ngIf="validField() && showError === true">
+  <ion-item *ngIf="name.errors?.['required']" class="error-item"lines="none">
+    <ion-text color="danger" >Campo requerido</ion-text>
+  </ion-item>
+</ng-container>

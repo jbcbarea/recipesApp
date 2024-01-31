@@ -1,0 +1,139 @@
+
+  /* tu-componente.component.scss */
+
+  .recipe-actions {
+    display: flex;
+    color:darkslategray;
+    flex-direction: row;
+    justify-content: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: smaller;
+  }
+  
+  .action-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  ion-button {
+    flex: 1; 
+  }
+  
+  .action-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ .recipeImg {
+  height: 300px!important;
+  object-fit:cover;
+ }
+  
+  ion-label {
+    margin-right: 8px; /* Ajusta el espacio entre la etiqueta y el rango según sea necesario */
+  }
+  
+  ion-button {
+    border-radius: 20px; /* Ajusta el radio de las esquinas según sea necesario */
+  }
+  
+
+  ion-range::part(tick) {
+    background:var(--ion-color-primary-shade);
+  }
+  
+  ion-range::part(tick-active) {
+    background: #bde0fe;
+  }
+  
+  ion-range::part(pin) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    background: var(--ion-color-primary);
+    color: #fff;
+  
+    border-radius: 50%;
+    transform: scale(1.01);
+  
+    top: -20px;
+  
+    min-width: 28px;
+    height: 28px;
+    transition: transform 120ms ease, background 120ms ease;
+  }
+  
+  ion-range::part(pin)::before {
+    content: none;
+  }
+  
+  ion-range::part(knob) {
+    background: var(--ion-color-primary-tint);
+  }
+  
+  ion-range::part(bar) {
+    background: #a2d2ff;
+  }
+  
+  ion-range::part(bar-active) {
+    background: #bde0fe;
+  }
+  .ingredients-list,.instructions-list {
+    margin: 0;
+  } 
+    /* Puedes agregar estilos a nivel de lista si es necesario */
+
+  
+  
+  .ingredient-item {
+    display: flex;
+    align-items: baseline; /* Alinea los elementos en la parte inferior */
+  }
+  
+  .ingredient-label,
+  .ingredient-quantity,
+  .ingredient-units {
+    align-self: flex-end; /* Alinea todos los elementos en la parte inferior del contenedor */
+  }
+  
+  .ingredient-label {
+    flex: 1; /* Hace que la etiqueta ocupe todo el espacio disponible */
+  }
+  
+  .ingredient-quantity,
+  .ingredient-units {
+    margin-left: 10px; 
+  }
+  
+  .ingredient-label {
+    font-size: large;
+    color:cadetblue;
+  }
+
+  .list-header {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .calories {
+    font-size: large;
+    color:teal;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .custom-button {
+    --background: orange;
+    --color: darkblue;
+  }
+  
+  @media screen and (min-width: 1200px) {
+    ion-card {
+      box-shadow: none !important;
+      margin-left: 20rem;
+      margin-right:20rem;
+    }
+  }

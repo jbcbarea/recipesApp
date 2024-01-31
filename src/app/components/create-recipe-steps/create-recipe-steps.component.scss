@@ -1,0 +1,28 @@
+.ingredient-item  {
+
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .error-item {
+    width: 100%;
+    font-size: 12px;
+    margin-left: 1rem;
+  }
+  
+.steps {
+    width: 100%;
+}
+  .button-row {
+    margin-left: 2rem;
+  }
+  ion-item {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  
+  }
+  
+  ion-input {
+    padding: 2rem;
+    margin-right: 30px;
+  }

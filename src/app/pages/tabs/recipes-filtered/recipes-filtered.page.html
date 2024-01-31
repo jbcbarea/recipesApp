@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/recipes-ingridients"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recetas filtradas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-search-bar [recipes]="recipes" (recipesFoundEvent)="handleRecipesFound($event)"></app-search-bar>
+  <ion-list>
+    <ion-list-header class="ion-margin-bottom">
+      <ion-label>
+        <h4 class="header-recipes">Recetas</h4>
+        <p>Descubre nuevas recetas</p>
+      </ion-label>
+    </ion-list-header>
+    <ion-item-group *ngIf="recipesAll?.length > 0">
+      <app-list-recipes *ngFor="let recipe of recipesAll" [recipe]="recipe" [routerLink]="['/', 'tabs', 'recipes', recipe.id, { comenFilter: comenFilter }]"></app-list-recipes>
+    </ion-item-group>
+    <ng-container *ngIf="recipesAll.length === 0 && !recipesFound">
+      <ion-list-header>
+      <ion-label>
+        <h4  class="notFoundMsg">Lo siento no hay recetas por ese criterio de búsqueda.</h4>
+        <ion-list>
+            <ng-container *ngFor="let element of searchParams">
+              <h3 class="notFoundParams"><strong>{{element.title}}</strong></h3>
+              <ion-item>
+                <ion-label>{{element.elements}}</ion-label>
+              </ion-item>
+            </ng-container>
+        </ion-list>
+      </ion-label>
+    </ion-list-header>
+    </ng-container>
+    <ng-container *ngIf="recipesAll.length === 0 && recipesFound">
+      <ion-label>
+      <h4  class="notFoundMsg">Lo siento no hay recetas por ese criterio de búsqueda : "{{recipesFound}}"</h4>
+    </ion-label>
+      </ng-container>
+  </ion-list>
+</ion-content>
+

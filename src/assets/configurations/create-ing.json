@@ -1,0 +1,135 @@
+{
+    "name": "Create-Recipes-Form",
+    "groups": [
+        { 
+            "name": "1.- Elegir grupo del tipo de ingrediente",
+            "order": 1,
+            "questions": [
+              {
+                "name": "ing-group",
+                "label": "Tipo de alimentos",
+                "questionTypeId": 5,
+                "extra":"assets/img/list-accordion-images",
+                "required": true,
+                "choices": [
+                  {
+                    "key": "carnes",
+                    "value": "Carnes",
+                    "order": 1,
+                    "img": "steak.png"
+                  },
+                  {
+                    "key": "pescados",
+                    "value": "Pescados",
+                    "order": 2,
+                    "img": "fish.png"
+                  },
+                  {
+                    "key": "vegetales",
+                    "value": "Vegetales y verduras",
+                    "order": 3,
+                    "img": "brocoli.png"
+                  },
+                  {
+                    "key": "frutas",
+                    "value": "Frutas",
+                    "order": 4,
+                    "img": "fruits.png"
+                  },
+                  {
+                    "key": "lacteos",
+                    "value": "Productos Lácteos",
+                    "order": 5,
+                    "img": "milk.png"
+                  },
+                  {
+                    "key": "legumbres",
+                    "value": "Legumbres",
+                    "order": 6,
+                    "img": "peas.png"
+                  },
+                  {
+                    "key": "frutosSecos",
+                    "value": "Frutos Secos",
+                    "order": 7,
+                    "img": "hazelnut.png"
+                  },
+                  {
+                    "key": "mariscos",
+                    "value": "Mariscos",
+                    "order": 8,
+                    "img": "seafood.png"
+                  },
+                  {
+                    "key": "aceites",
+                    "value": "Aceites y Vinagres",
+                    "order": 9,
+                    "img": "oils.png"
+                  },
+                  {
+                    "key": "especias",
+                    "value": "Hierbas y Especias",
+                    "order": 10,
+                    "img": "salt.png"
+                  },
+                  {
+                    "key": "salsas",
+                    "value": "Salsas y Aderezos",
+                    "order": 11,
+                    "img": "sauce.png"
+                  },
+                  {
+                    "key": "bebidas",
+                    "value": "Bebidas y Jugos",
+                    "order": 12,
+                    "img": "breberage.png"
+                  },
+                  {
+                    "key": "panaderia",
+                    "value": "Pan,cereales y Pasta",
+                    "order": 13,
+                    "img": "sweats.png"
+                  },
+                  {
+                    "key": "quesos",
+                    "value": "Quesos",
+                    "order": 14,
+                    "img": "cheese.png"
+                  },
+                  {
+                    "key": "huevos",
+                    "value": "Huevos",
+                    "order": 15,
+                    "img": "eggs (2).png"
+                  }
+                ]
+              }
+            ]
+          },
+      {
+        "name": "2.- Introduce el nombre del ingrediente",
+        "order": 1,
+        "questions": [
+          {
+            "name": "ingredient-name",
+            "label": "Nombre del nuevo ingrediente",
+            "questionTypeId": 6,
+            "required": true
+          }
+        ]
+      },
+      { 
+        "name": "3.- Rellena datos nutricionales del ingrediente",
+        "order": 1,
+        "questions": [
+          {
+            "name": "ing-feature",
+            "label": "Datos nutricionales",
+            "questionTypeId": 8,
+            "required": true
+          }
+        ]
+      }
+    ]
+  }
+  

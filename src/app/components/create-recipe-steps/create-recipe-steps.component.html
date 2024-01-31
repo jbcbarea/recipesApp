@@ -1,0 +1,44 @@
+<div>
+  <!--
+
+  <h3>{{ question.label }}</h3>
+  -->
+  <ion-list class="ingredient-list">
+    <ng-container *ngFor="let item of recipeSteps; let i = index">
+      <ion-item class="ingredient-item">
+        <ion-textarea
+          [(ngModel)]="item.step"
+          [autoGrow]="true"
+          class="steps"
+          label="{{question.label}}"
+          labelPlacement="floating"
+          [counter]="true"
+          maxlength="1000"
+        ></ion-textarea>
+      </ion-item>
+      <ion-item
+        *ngIf="validField(i) && showError"
+        lines="none"
+        class="error-item"
+      >
+        <ion-text color="danger"
+          >Campo requerido. Completa con los pasos de tu receta</ion-text
+        >
+      </ion-item>
+    </ng-container>
+  </ion-list>
+  <div class="button-row">
+    <ion-icon
+      name="add-circle"
+      (click)="addStep()"
+      class="add-icon"
+      color="secondary"
+    ></ion-icon>
+    <ion-icon
+      name="remove-circle"
+      (click)="removeStep()"
+      class="remove-icon"
+      color="tertiary"
+    ></ion-icon>
+  </div>
+</div>

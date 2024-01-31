@@ -1,0 +1,36 @@
+<ng-container *ngIf="question.choices">
+  <ion-grid>
+    <ion-row class="ion-wrap" *ngFor="let choice of question.choices; let i = index">
+      <ion-col class="col-9 ion-align-self-start">     
+        <ion-item class="" lines="none">
+          <ion-checkbox
+            #checkBox
+            (ionChange)="onCheckboxChange(choice.key,choice.order,$event)"
+            slot="start"
+            [value]="!choice.key"
+            labelPlacement="end"
+            justify="end"
+            [(ngModel)]="choice.checked"
+          >
+            <div class="ion-text-wrap" [innerHtml]="question.choices![i].value"></div>
+          </ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col class="col-3 ion-align-self-center custom-col-img">
+        <ion-avatar>
+          <ion-img
+            src="assets/img/time-consumption/{{ question.choices![i].img }}"
+            alt="Imagen"
+          ></ion-img>
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    <ng-container *ngIf="validField() && showError">
+      <ion-item lines="none" class="error-item">
+        <ion-text color="danger">Campo requerido, al menos selecciona uno</ion-text>
+      </ion-item>
+    </ng-container>
+  </ion-grid>
+</ng-container>
+
+

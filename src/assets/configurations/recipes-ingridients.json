@@ -1,0 +1,404 @@
+{
+  "name": "Recipes-Filter-By-Ingridients",
+  "groups": [
+    {
+      "name": "1.- Filtar por diversos parámetros",
+      "order": 1,
+      "questions": [
+        {
+          "id": 1,
+          "name": "world-recipes",
+          "label": "Recetas del mundo",
+          "questionTypeId": 3,
+          "order": 1,
+          "required": true,
+          "choices": [
+            {
+              "key": "spain",
+              "value": "Comida Española",
+              "order": 1
+            },
+            {
+              "key": "france",
+              "value": "Comida Francesa",
+              "order": 2
+            },
+            {
+              "key": "portugal",
+              "value": "Comida Portuguesa",
+              "order": 3
+            },
+            {
+              "key": "mexico",
+              "value": "Comida Mejicána",
+              "order": 4
+            },
+            {
+              "key": "china",
+              "value": "Comida China",
+              "order": 5
+            },
+            {
+              "key": "japan",
+              "value": "Comida Japonesa",
+              "order": 6
+            },
+            {
+              "key": "greece",
+              "value": "Comida Griega",
+              "order": 7
+            },
+            {
+              "key": "germany",
+              "value": "Comida Alemana",
+              "order": 8
+            },
+            {
+              "key": "italy",
+              "value": "Comida Italiana",
+              "order": 9
+            },
+            {
+              "key": "england",
+              "value": "Comida Inglésa",
+              "order": 10
+            },
+            {
+              "key": "no-aply",
+              "value": "No aplica",
+              "order": 10
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "guest-number",
+          "label": "Número de Comensales",
+          "questionTypeId": 3,
+          "order": 2,
+          "required": true,
+          "choices": [
+            {
+              "key": "1",
+              "value": "1",
+              "order": 1
+            },
+            {
+              "key": "2",
+              "value": "2",
+              "order": 2
+            },
+            {
+              "key": "3",
+              "value": "3",
+              "order": 3
+            },
+            {
+              "key": "4",
+              "value": "4",
+              "order": 4
+            },
+            {
+              "key": "5",
+              "value": "5",
+              "order": 5
+            },
+            {
+              "key": "6",
+              "value": "6",
+              "order": 6
+            },
+            {
+              "key": "7",
+              "value": "7",
+              "order": 7
+            },
+            {
+              "key": "8",
+              "value": "8",
+              "order": 8
+            },
+            {
+              "key": "9",
+              "value": "9",
+              "order": 9
+            },
+            {
+              "key": "10",
+              "value": "10",
+              "order": 10
+            },
+            {
+              "key": "99",
+              "value": "No aplica",
+              "order": 11
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "difficulty",
+          "label": "Dificultad",
+          "questionTypeId": 3,
+          "order": 3,
+          "required": true,
+          "choices": [
+            {
+              "key": "Facil",
+              "value": "Fácil",
+              "order": 1
+            },
+            {
+              "key": "Media",
+              "value": "Media",
+              "order": 2
+            },
+            {
+              "key": "Dificil",
+              "value": "Difícil",
+              "order": 3
+            },
+            {
+              "key": "no-aply",
+              "value": "No aplica",
+              "order": 4
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "prep-time",
+          "label": "Tiempo de preparación",
+          "questionTypeId": 3,
+          "order": 4,
+          "required": true,
+          "choices": [
+            {
+              "key": "30",
+              "value": "Tiempo de preparación 30 min o menos",
+              "order": 1
+            },
+            {
+              "key": "60",
+              "value": "Tiempo de preparación 60 min o menos",
+              "order": 2
+            },
+            {
+              "key": "90",
+              "value": "Tiempo de preparación 90 min o menos",
+              "order": 3
+            },
+            {
+              "key": "91",
+              "value": "Tiempo de preparación más de 90 min",
+              "order": 3
+            },
+            {
+              "key": "0",
+              "value": "No aplica",
+              "order": 3
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "score",
+          "label": "Puntuación",
+          "questionTypeId": 3,
+          "order": 5,
+          "required": true,
+          "choices": [
+            {
+              "key": "4",
+              "value": "Recetas con puntuaciones entre 1 y 4",
+              "order": 1
+            },
+            {
+              "key": "6",
+              "value": "Recetas con puntuaciones entre 5 y 6",
+              "order": 2
+            },
+            {
+              "key": "8",
+              "value": "Recetas con puntuaciones entre 7 y 8",
+              "order": 3
+            },
+            {
+              "key": "10",
+              "value": "Recetas con puntuaciones entre 9 y 10",
+              "order": 4
+            },
+            {
+              "key": "99",
+              "value": "No aplica",
+              "order": 5
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "world-recipes-message",
+          "label": "Diversos filtros por recetas",
+          "questionTypeId": 4,
+          "order": 6,
+          "required": false,
+          "info": "Selecciona el tipo de recetas del mundo por los que quieras filtrar, Número de comensales. Por tiempo de preparación. Por puntuación de la receta por parte de otros usuarios. Si se selecciona no aplica no se ejercerán esos parámetros al filtrar recetas"
+        }
+      ]
+    },
+    {
+      "name": "2.- Elegir receta por horario de consumo",
+      "order": 1,
+      "questions": [
+        {
+          "id": 7,
+          "name": "time-consume",
+          "label": "Tiempo de consumo",
+          "questionTypeId": 1,
+          "order": 1,
+          "required": true,
+          "extra": "concat",
+          "choices": [
+            {
+              "key": "Desayuno",
+              "value": "Desayuno",
+              "order": 1,
+              "img": "breakfast.png"
+            },
+            {
+              "key": "Aperitivo",
+              "value": "Aperitivo",
+              "order": 2,
+              "img": "apperitive.png"
+            },
+            {
+              "key": "Comida",
+              "value": "Almuerzo",
+              "order": 3,
+              "img": "meal.png"
+            },
+            {
+              "key": "Merienda",
+              "value": "Merienda",
+              "order": 4,
+              "img": "supper.png"
+            },
+            {
+              "key": "Cena",
+              "value": "Cena",
+              "order": 5,
+              "img": "dinner.png"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Time-consume-recipe-message",
+          "label": "Recetas por horario de consumo",
+          "questionTypeId": 4,
+          "order": 2,
+          "required": false,
+          "info": "Podrás filtrar por recetas según su horario de consumo.Puedes seleccionar varias opciones ya que hay recetas pueden ser consumidas en diversas zonas horarias. Dejar sin selección todas las opciones significa que no se aplicaría el filtro."
+        }
+      ]
+    },
+    {
+      "name": "3.- Filtro de recetas basado en restricciones alimentarias",
+      "order": 2,
+      "questions": [
+        {
+          "name": "restricciones-alimentarias",
+          "questionTypeId": 5,
+          "order": 1,
+          "extra":"assets/img/restricted-food",
+          "choices": [
+            {
+              "key": "gluten-free",
+              "value": "Cocina Sin Glúten",
+              "order": 1,
+              "img": "gluten.png"
+            },
+            {
+              "key": "no-dairy",
+              "value": "Cocina Sin lácteos",
+              "order": 2,
+              "img": "dairy.png"
+            },
+            {
+              "key": "no-egg",
+              "value": "Cocina Sin Huevos",
+              "order": 3,
+              "img": "eggs.png"
+            },
+            {
+              "key": "no-nuts",
+              "value": "Cocina Sin Frutos Secos",
+              "order": 4,
+              "img": "peanut.png"
+            },
+            {
+              "key": "no-seafood",
+              "value": "Cocina Sin Mariscos",
+              "order": 5,
+              "img": "shellfish.png"
+            },
+            {
+              "key": "no-aply",
+              "value": "No aplica",
+              "order": 5,
+              "img": "no-restriction.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4.- Selecciona Ingredientes",
+      "order": 1,
+      "questions": [
+        {
+          "name": "carnes",
+          "label": "Carnes",
+          "questionTypeId": 9,
+          "order": 1,
+          "img": "steak.png"
+        },
+        {
+          "name": "vegetales",
+          "label": "Vegetales",
+          "questionTypeId": 9,
+          "order": 2,
+          "img": "brocoli.png"
+        },
+        {
+          "name": "frutas",
+          "label": "Frutas",
+          "questionTypeId": 9,
+          "order": 3,
+          "img": "fruits.png"
+        },
+        {
+          "name": "lacteos",
+          "label": "Lácteos",
+          "questionTypeId": 9,
+          "order": 4,
+          "img": "milk.png"
+        },
+        {
+          "name": "frutosSecos",
+          "label": "Frutos secos",
+          "questionTypeId": 9,
+          "order": 5,
+          "img": "hazelnut.png"
+        },
+        {
+          "name": "pescados",
+          "label": "Pescados",
+          "questionTypeId": 9,
+          "order": 6,
+          "img": "fish.png"
+        }
+      ]
+    }
+  ]
+}

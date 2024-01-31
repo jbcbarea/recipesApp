@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crea un cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <div class="logo">
+    <ion-img src="assets/icon/logoApp.png"></ion-img>
+  </div>
+
+  <form #signUpForm="ngForm" (ngSubmit)="onSubmit(signUpForm)">
+    <ion-list lines="none">
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="person" slot="start" color="primary"></ion-icon> 
+        <ion-input
+          type="text"
+          name="name"
+          ngModel
+          #name="ngModel"
+          placeholder="Name"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger" class="ion-text-center" *ngIf="!name.valid && name.touched">
+        <p class="errorMsg">* Introduce tu nombre</p>
+      </ion-text>
+
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="mail" slot="start" color="primary"></ion-icon> 
+        <ion-input
+          type="email"
+          name="email"
+          ngModel
+          email
+          #emailCtrl="ngModel"
+          placeholder="Email"
+          required>
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger" class="ion-text-center" *ngIf="!emailCtrl.valid && emailCtrl.touched">
+        <p class="errorMsg">* por favor introduzca una dirección de correo válida</p>
+      </ion-text>
+
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="call" slot="start" color="primary"></ion-icon> 
+        <ion-input
+          type="tel"
+          name="phone"
+          ngModel
+          #phone="ngModel"
+          placeholder="Phone"
+          required
+          minlength="9"
+          maxlength="9">
+        </ion-input>
+      </ion-item>
+      <ion-text class="ion-text-center" color="danger" *ngIf="!phone.valid && phone.touched">
+        <p class="errorMsg">* Por favor introduzca un número de teléfono válido</p>
+      </ion-text>
+
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="key" slot="start" color="primary"></ion-icon> 
+        <ion-input
+          type="password"
+          name="password"
+          ngModel
+          #passwordCtrl="ngModel"
+          placeholder="Password"
+          required
+          minlength="8">
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="!passwordCtrl.valid && passwordCtrl.touched" class="ion-text-center">
+        <p class="errorMsg">* La contraseña debe de ser mínimo de una longitud de 8 caracteres</p>
+      </ion-text>
+      <ion-text color="danger" *ngIf="signUpForm.valid && !credentialsGranted" class="ion-text-center">
+        <p class="errorMsg">* Este usuario ya existe. Puedes cambiar las credenciales desde la aplicación en la opción: Cuenta de usuario</p>
+      </ion-text>
+    </ion-list>
+
+    <ion-button 
+      *ngIf="!isLoading" 
+      [disabled]="!signUpForm.valid"
+      expand="block" 
+      shape="round" 
+      type="submit" 
+      color="primary">  <div class="ion-text-center" *ngIf="isLoading">
+        <ion-spinner name="circles"></ion-spinner>
+    </div>
+      Crear nueva cuenta
+    </ion-button>
+
+    <div class="ion-text-center" *ngIf="isLoading">
+        <ion-spinner name="circles"></ion-spinner>
+    </div>
+    
+  </form>
+
+</ion-content>
+

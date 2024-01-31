@@ -1,0 +1,58 @@
+
+<div [ngSwitch]="question.questionTypeId">
+<app-select-list
+*ngSwitchCase="questionTypes.COMBO_SELECTION"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"
+></app-select-list>
+<app-list-accordion
+*ngSwitchCase="questionTypes.LIST_ACCORDION"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"
+></app-list-accordion>
+<app-create-ingredients
+  *ngSwitchCase="questionTypes.INPUT_TEXT_NUMBER"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-create-ingredients>
+<app-check-list
+  *ngSwitchCase="questionTypes.CHECK_LIST_MULTI_SELECTION"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-check-list>
+<app-message
+  *ngSwitchCase="questionTypes.MESSAGE"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"></app-message>
+<app-select-list-photo
+  *ngSwitchCase="questionTypes.LIST_SINGLE_SELECTION"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-select-list-photo>
+<app-input-recipe-name
+  *ngSwitchCase="questionTypes.INPUT_SINGLE"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-input-recipe-name>
+ <app-create-recipe-steps
+  *ngSwitchCase="questionTypes.INPUT_LONG_TEXT"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-create-recipe-steps>
+ <app-ingredient-features
+ *ngSwitchCase="questionTypes. INPUT_MULTI"
+[question]="question"
+[parentForm]="parentForm"
+[formDirective]="formDirective"
+[showError]="showError"></app-ingredient-features>
+</div>

@@ -1,0 +1,36 @@
+.ingredient-item  {
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-item {
+  width: 100%;
+  font-size: 12px;
+  margin-left: 1rem;
+}
+
+.ingredient-input {
+  width: 45%;
+}
+.ingredient-measure {
+width: 25%;
+}
+
+.ingredient-quantity {
+  width: 20%;
+   /* Margen interno para los lados (arriba y abajo 5px, izquierda y derecha 20px) */
+}
+.button-row {
+  margin-left: 2rem;
+}
+ion-item {
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+}
+
+ion-input {
+  padding: 2rem;
+  margin-right: 30px;
+}

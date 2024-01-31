@@ -1,0 +1,60 @@
+ion-header {
+  ion-icon {
+      font-size: 1rem;
+  }
+}
+
+ion-img {
+margin-left: 1rem;
+margin-top: 0.5px;
+margin-bottom: 0.5px;
+}
+
+.logOutStyles {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans';
+  margin-right: 1rem;
+}
+
+.title-container {
+  display: flex;
+  //padding:0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  flex-direction: row;
+  align-items: center;
+}
+
+.user {
+  font-family: monospace;
+  font-size: x-small;
+}
+.custom-card {
+  overflow: hidden;
+}
+  .title {
+    font-size:x-large;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    color:var(--ion-color-secondary);
+  }
+
+  .text-danger {
+    color:var(--ion-color-danger);
+  }
+
+  .error-item {
+    width: 100%;
+    font-size: 12px;
+    margin-top: 0px;
+  }
+
+@media screen and (min-width: 1200px) {
+  ion-card {
+    margin-left: 20rem;
+    margin-right: 20rem;
+    box-shadow: none !important;
+  }
+}

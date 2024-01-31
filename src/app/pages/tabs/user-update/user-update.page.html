@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="logOutStyles">
+     <ion-img src="assets/icon/logoAppToolBar.png" class="logo-image"></ion-img>
+      <ion-title color="dark" class="title-container">
+        <span>Cuenta de usuario</span>
+        <p class="user">{{userEmail}}</p>
+      </ion-title>
+      <app-log-out></app-log-out>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="logo">
+    <ion-img src="assets/icon/logoApp.png"></ion-img>
+  </div>
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="person" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="text"
+          formControlName="name"
+          placeholder="Introduce tu nombre"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="updateForm.get('name').hasError('required') && updateForm.get('name').touched" class="ion-text-center">
+        <p class="errorMsg">* Este campo debe estar rellenado</p>
+      </ion-text>
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="call" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="number"
+          formControlName="phone"
+          name="phone"
+          placeholder="Introduce un número de teléfono"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="!updateForm.get('phone').valid && updateForm.get('phone').touched" class="ion-text-center">
+        <p class="errorMsg">* Este campo debe estar rellenado</p>
+      </ion-text>
+      <!-- Resto de tu formulario, reemplaza las referencias a ngModel por formControlName -->
+      <ion-checkbox  (ionChange)="isChecked($event)" class="margins">Cambiar tu contraseña</ion-checkbox>
+      <ng-container *ngIf="resetPassword">
+        <ion-item color="light" class="ion-margin-bottom" >
+          <ion-icon name="key" slot="start" color="primary"></ion-icon>
+          <ion-input
+            type="password"
+            formControlName="oldPassword" 
+            placeholder="Introduce tu antigua contraseña"
+          ></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="updateForm.get('oldPassword').hasError('minlength')" class="ion-text-center">
+          <p class="errorMsg">Proporcione una contraseña válida</p>
+        </ion-text>
+      <ion-item color="light" class="ion-margin-bottom" >
+        <ion-icon name="log-in" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="password"
+          formControlName="password" 
+          placeholder="Introduce tu nueva contraseña"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="updateForm.get('password').hasError('minlength')" class="ion-text-center">
+        <p class="errorMsg">Proporcione una contraseña válida</p>
+      </ion-text>
+      <ion-item color="light" class="ion-margin-bottom">
+        <ion-icon name="repeat" slot="start" color="primary"></ion-icon>
+        <ion-input
+          type="password"
+          formControlName="passwordRepeat"
+          placeholder="Repite de nuevo la contraseña"
+        ></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="updateForm.get('passwordRepeat').hasError('minlength')" class="ion-text-center">
+        <p class="errorMsg">Proporcione una contraseña válida</p>
+      </ion-text>
+      <ion-text color="danger" *ngIf="repeatedPassword" class="ion-text-center">
+        <p class="errorMsg">La nueva contraseña introducida no coincide, con la anterior</p>
+      </ion-text>
+    </ng-container>
+    <ion-button
+    [disabled]="!updateForm.valid"
+    expand="block"
+    shape="round"
+    type="submit"
+    color="primary"
+  >
+  Actualizar cuenta
+  </ion-button>
+    </ion-list>
+    </form>

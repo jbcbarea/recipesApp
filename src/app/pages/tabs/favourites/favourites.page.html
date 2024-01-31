@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="logOutStyles">
+     <ion-img src="assets/icon/logoAppToolBar.png" class="logo-image"></ion-img>
+      <ion-title color="dark" class="title-container">
+        <span>Recetas favoritas</span>
+        <p class="user">{{user}}</p>
+      </ion-title>
+      <app-log-out></app-log-out>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card style=" border: none;">
+  <app-search-bar [recipes]="recipes" (recipesFoundEvent)="handleRecipesFound($event)"></app-search-bar>
+  <ion-list>
+    <ion-list-header class="ion-margin-bottom">
+      <ion-label>
+        <h4 class="header-recipes">Recetas favoritas de {{user}}</h4>
+        <p>Gestiona tus recetas guardadas como favoritas</p>
+      </ion-label>
+    </ion-list-header>
+    <ion-item-group *ngIf="recipesAll?.length > 0">
+      <app-list-recipes *ngFor="let recipe of recipesAll" [recipe]="recipe" (click)="navigateToFullRecipes(recipe.id)" ></app-list-recipes>
+      <!--[routerLink]="['/','tabs','recipes',recipe.id]"-->
+    </ion-item-group>
+    <ng-container *ngIf="recipesAll.length === 0 && recipesFound !== null">
+      <ion-list-header>
+      <ion-label>
+        <h4 class="notFoundMsg">Lo siento no hay recetas por ese criterio de búsqueda : {{recipesFound}} "(Pulsar enter en vacío para mostrar todas las recetas) </h4>
+      </ion-label>
+    </ion-list-header>
+  </ng-container>
+    <ng-container *ngIf="recipesAll.length === 0 && recipesFound === null">
+      <ion-list-header>
+      <ion-label>
+        <h4 class="notFoundMsg">Lo siento no hay ninguma receta como favorita para este usuario.</h4>
+      </ion-label>
+    </ion-list-header>
+    </ng-container>
+  </ion-list>
+  </ion-card>
+</ion-content>
+
+

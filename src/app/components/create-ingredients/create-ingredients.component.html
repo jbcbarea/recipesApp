@@ -1,0 +1,24 @@
+
+
+  <div>
+  <ion-list class="ingredient-list">
+    <ng-container *ngFor="let item of ingredients; let i = index">
+      <ion-item class="ingredient-item">
+        <ion-select [(ngModel)]="item.ingredient" class="ingredient-input" aria-label="Selecciona ingrediente" interface="popover" placeholder="Ingrediente">
+          <ion-select-option *ngFor="let i of ingredi" [value]="i">{{i}}</ion-select-option></ion-select>
+          <ion-input label="Cantidad" type="number" label-placement="floating"  placeholder="Enter text" [(ngModel)]="item.quantity" class="ingredient-quantity"></ion-input>
+          <ion-select [(ngModel)]="item.measurement" class="ingredient-input" aria-label="Selecciona ingrediente" interface="popover" placeholder="Medida">
+          <ion-select-option *ngFor="let elements of unitMeasurement" [value]="elements">{{elements}}</ion-select-option></ion-select>
+      </ion-item>
+      <ion-item *ngIf="validField(i) && showError" lines="none" class="error-item">
+        <ion-text color="danger">Campo requerido. Completa Ingrediente con cantidad. La cantidad no puede ser cero o tomar números negativos</ion-text>
+      </ion-item>
+    </ng-container>
+      
+  </ion-list>
+  <div class="button-row">
+    <ion-icon name="add-circle" (click)="addIngredient()" class="add-icon" color="secondary"></ion-icon>
+    <ion-icon name="remove-circle" (click)="removeIngredient()" class="remove-icon" color="tertiary"></ion-icon>
+  </div>
+</div>
+
