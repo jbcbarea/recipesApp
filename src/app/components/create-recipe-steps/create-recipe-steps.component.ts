@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractQuestionComponent } from '../abstract-question.component';
 
 interface RecipeSteps {
@@ -11,7 +11,10 @@ interface RecipeSteps {
 })
 export class CreateRecipeStepsComponent extends AbstractQuestionComponent  implements OnInit {
 
-  recipeSteps:RecipeSteps [] = [{step:'Paso 1: '}];
+  @Output() validFieldEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  //recipeSteps:RecipeSteps [] = [{step:'Paso 1: '}];
+  recipeSteps:RecipeSteps [] = [{step:''}];
   steps:number = 2;
   constructor() {
     super();
@@ -23,14 +26,15 @@ export class CreateRecipeStepsComponent extends AbstractQuestionComponent  imple
     }
     this.parentForm.valueChanges.subscribe(() => {
       if (this.parentForm.controls[this.question.name].value === null) {
-        this.recipeSteps = [];
+        //this.recipeSteps = [{step:'Paso 1: '}];
+        this.recipeSteps= [{step:''}];
         this.parentForm.controls[this.question.name].setValue(this.recipeSteps);
       }
     });
   }
 
   addStep() {
-    this.recipeSteps.push({step:`Paso ${this.steps++}: `});
+    //this.recipeSteps.push({step:''});
     if (this.parentForm && this.question && this.parentForm.controls[this.question.name]) {
       this.parentForm.controls[this.question.name].setValue(this.recipeSteps);
     }
@@ -38,7 +42,7 @@ export class CreateRecipeStepsComponent extends AbstractQuestionComponent  imple
   
   removeStep() {
     if(this.recipeSteps.length > 1) {
-      this.steps--;
+      //this.steps--;
       this.recipeSteps.splice(this.recipeSteps.length-1, 1);
       this.parentForm.controls[this.question.name].setValue(this.recipeSteps);
     }
@@ -46,10 +50,8 @@ export class CreateRecipeStepsComponent extends AbstractQuestionComponent  imple
 
   validField(index: number): boolean {
     const formValue = this.parentForm.controls[this.question.name]?.value;
-    return (
-      !formValue ||
-      !formValue[index] ||
-      formValue[index].step.length <=9
-    );
+    const isValid = !formValue || !formValue[index] || formValue[index].step.length <= 9;
+    this.validFieldEvent.emit(isValid); // Emitir el valor
+    return isValid;
   }
 }

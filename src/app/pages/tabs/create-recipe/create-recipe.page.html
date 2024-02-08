@@ -46,12 +46,13 @@
                             [parentForm]="dynamicForm"
                             [formDirective]="form"
                             [showError]="showError"
+                            (validField)="validFieldEventHandler($event)"
                           ></app-form-questions>
                         </ng-container>
                       </div>
                     </div>
                   </ng-container>
-                  <app-file-upload [resetInputFile]="resetInputFileOnSubmitted"
+                  <app-file-upload [resetInputFile]="resetInputFileOnSubmitted" [showError]="showError"
                     (fileUploaded)="onFileUploaded($event)"
                   ></app-file-upload>
                 </div>

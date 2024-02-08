@@ -72,7 +72,7 @@ export class RecipesIngridientsPage implements OnInit {
       this.ingridientParamGood.length >= 2 &&
       this.dynamicForm.controls['restricciones-alimentarias'].value !==
         undefined &&
-      this.elementsSelected
+      this.ingridientParamGood
     ) {
       this.showError = false;
       console.log('1', this.timeConsumeParams);
@@ -101,9 +101,10 @@ export class RecipesIngridientsPage implements OnInit {
       this.router.navigate(['/tabs/recipes-filtered'], { queryParams: params });
     } else {
       this.showError = true;
-      setTimeout(() =>{
-        this.showError = false;
-      },3000);
+
+      //setTimeout(() =>{
+      //  this.showError = false;
+      //},3000);
     }
   }
 
@@ -157,7 +158,7 @@ export class RecipesIngridientsPage implements OnInit {
   public orderTimeConsumeData(): void {
     const timeConsumeArray = this.dynamicForm.controls['time-consume'].value;
     console.log(timeConsumeArray);
-    if (timeConsumeArray.length > 1) {
+    if (timeConsumeArray && timeConsumeArray.length > 1) {
       this.elementsSelected = true;
       // Ordenar el array de objetos en función del campo 'order'
       timeConsumeArray.sort((a, b) => a.order - b.order);

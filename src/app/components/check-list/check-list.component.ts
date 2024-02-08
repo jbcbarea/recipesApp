@@ -26,6 +26,7 @@ export class CheckListComponent
     this.parentForm.valueChanges.subscribe(() => {
       // Aquí checkBox!!
       if (this.parentForm.controls[this.question.name].value === null) {
+        this.cusineType = [{value:'no-aply'}];
         this.question.choices?.forEach(choice => {
           choice.checked = false;
         });
@@ -61,7 +62,6 @@ export class CheckListComponent
       }
     }
     this.parentForm.controls[this.question.name].setValue(this.cusineType);
-    console.log(this.cusineType);
   }
  
 }

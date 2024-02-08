@@ -137,6 +137,7 @@ export class FileUploadComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   @Input() resetInputFile: boolean = false;
+  @Input() showError:boolean;
   @Output() fileUploaded: EventEmitter<string> = new EventEmitter<string>;
 
   constructor(
@@ -203,6 +204,7 @@ this.isMobileVariable = await this.isMobile();
   }
 
   async upload() {
+
     this.uploadAttempted = true;
     if (!this.selectedFile) {
       console.error('No se ha seleccionado un archivo.');
@@ -228,16 +230,13 @@ this.isMobileVariable = await this.isMobile();
 
   private async readFile(file: File): Promise<Blob> {
     if (isPlatformBrowser(this.platformId)) {
-      // Estamos en un entorno de navegador
       return file;
     } else if (Capacitor.isNative) {
-      // Estamos en un entorno nativo, lee el archivo usando el complemento Filesystem de Capacitor
       const fileData = await Filesystem.readFile({
         path: file.name,
       });
       return new Blob([fileData.data], { type: file.type });
     } else {
-      // Otro caso (por ejemplo, entorno de servidor), devuelve el archivo sin procesar
       return file;
     }
   }

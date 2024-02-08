@@ -33,17 +33,44 @@ export class RecipesFilteredPage implements OnInit {
     // Recuperar los parámetros de la URL
     this.route.queryParams.subscribe(params => {
 
-      this.queryParams = params;
-      const tipoReceta = params['tipoReceta'];
-      const tiempoPreparacion = params['tiempoPreparacion'];
-      const dificultad = params['dificultad'];
-      const tipoRecetaMundo = params['tipoRecetaMundo'];
-      const ingredientes = params['ingredientes'];
-      const puntuacion = params['puntuacion'];
-      const restric_alimentaria = params['restric_alimentaria'];
-      const num_comen_parametro = params['comensales'];
 
+      //this.queryParams = params;
+     
+      let tipoReceta = params['tipoReceta'];
+      let tiempoPreparacion = params['tiempoPreparacion'];
+      let dificultad = params['dificultad'];
+      let tipoRecetaMundo = params['tipoRecetaMundo'];
+      let ingredientes = params['ingredientes'];
+      let puntuacion = params['puntuacion'];
+      let restric_alimentaria = params['restric_alimentaria'];
+      let num_comen_parametro = params['comensales'];
 
+      
+      if(tipoReceta === 'no-aply') {
+        tipoReceta = 'No aplica';
+      }
+       if (tiempoPreparacion === '0') {
+        tiempoPreparacion = 'No aplica';
+      }
+       if (dificultad === 'no-aply') {
+        dificultad = 'No aplica';
+      }
+       if (tipoRecetaMundo  === 'no-aply') {
+        tipoRecetaMundo = 'No aplica';
+      }
+       if (puntuacion === '99') {
+        console.log('asdjasd');
+        puntuacion = 'No aplica';
+      }
+       if (restric_alimentaria === 'no-aply') {
+        restric_alimentaria = 'No aplica';
+      }
+       if (num_comen_parametro === '99') {
+        num_comen_parametro = 'No aplica';
+      }
+      
+    
+      
       this.searchParams.push({title:'Tipo de tipoReceta',elements:tipoReceta},
       {title:'Tiempo de preparación',elements:tiempoPreparacion},
       {title:'Dificultad receta',elements:dificultad},

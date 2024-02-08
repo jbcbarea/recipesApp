@@ -48,7 +48,8 @@
 [question]="question"
 [parentForm]="parentForm"
 [formDirective]="formDirective"
-[showError]="showError"></app-create-recipe-steps>
+[showError]="showError"
+(validFieldEvent)="validFieldEventHandler($event)"></app-create-recipe-steps>
  <app-ingredient-features
  *ngSwitchCase="questionTypes. INPUT_MULTI"
 [question]="question"

@@ -32,6 +32,8 @@ export class CreateIngPage implements OnInit {
     this.dynamicForm = await this.formUtils.buildForm(this.initConfiguration);
   }
 
+  //TODO: Aquí me falta hacer lo de los TOast al crear el ingrediente vale?? Acuerdate amigo!
+
   public async createNewIngredient(): Promise<void> {
     if (this.dynamicForm.valid) {
       const params: any = {

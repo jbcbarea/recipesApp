@@ -1,12 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
+import { Question } from '../models/interfaces/questions.interface';
 
 @Component({
   selector: 'app-abstract-question',
   template: '',
 })
 export class AbstractQuestionComponent {
-    //tipar a Question!!
+  
   @Input() question: any;
   @Input() parentForm: FormGroup;
   @Input() formDirective: FormGroupDirective;

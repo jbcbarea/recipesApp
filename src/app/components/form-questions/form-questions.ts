@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { AbstractQuestionComponent } from '../abstract-question.component';
 import { QuestionTypes } from 'src/app/models/Question-types.enums';
@@ -10,8 +10,11 @@ import { QuestionTypes } from 'src/app/models/Question-types.enums';
 })
 export class FormQuestionsComponent extends AbstractQuestionComponent implements OnInit {
 
+  @Output() validField: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   value: string;
   questionTypes = QuestionTypes;
+  isFieldValid: boolean;
   
   constructor() {super()}
 
@@ -19,6 +22,7 @@ export class FormQuestionsComponent extends AbstractQuestionComponent implements
 
     console.log('Desde FORM-QUESTIONS',this.question);
     
+
     /*
     if (this.question.dependencies) {
       if (this.question.dependencies.some((dependency: Dependency) => dependency.dependencyTypeId === DependencyType.DISABLED)) {
@@ -44,5 +48,10 @@ export class FormQuestionsComponent extends AbstractQuestionComponent implements
           }
         });
         */
+}
+
+public validFieldEventHandler(isValid: boolean): void {
+  this.isFieldValid = isValid;
+  this.validField.emit(this.isFieldValid);
 }
     }

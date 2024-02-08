@@ -5,8 +5,8 @@ const config: CapacitorConfig = {
   appName: 'recipesApp',
   webDir: 'www',
   server: {
-    androidScheme: 'https',  // Change to 'https' if needed
-    allowNavigation: ['https://localhost:*'], // Update this to match your server URL
+    androidScheme: 'http',  // Change to 'https' if needed
+    allowNavigation: ['http://localhost:*'], // Update this to match your server URL
     cleartext: true
   }
 };

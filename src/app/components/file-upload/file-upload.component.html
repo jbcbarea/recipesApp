@@ -66,7 +66,7 @@
       <ion-icon name="checkmark-circle-outline" [ngStyle]="{ color: 'green' }"></ion-icon>
     </ng-container>
   </ion-item>
-  <ion-item *ngIf="!selectedFile && uploadAttempted" lines="none" class="error-item">
+  <ion-item *ngIf="!selectedFile && uploadAttempted && showError" lines="none" class="error-item">
     <ion-text color="danger"
       >Campo requerido. Tienes que seleccionar una imágen</ion-text
     >

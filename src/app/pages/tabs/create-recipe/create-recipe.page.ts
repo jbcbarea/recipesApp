@@ -19,12 +19,14 @@ export class CreateRecipePage implements OnInit {
   @ViewChild('form') form: NgForm;
   timeConsumeParams: string;
   showError: boolean = false;
+  recipeStep: string[];
   resetInputFileOnSubmitted: boolean = false;
   dynamicForm: FormGroup;
   initConfiguration: any;
-  userEmail:string;
+  userEmail: string;
   selectedUploadFile: string = '';
   formValueChangesSubscription: any;
+  isFieldValid: boolean;
 
   constructor(
     private readonly http: HttpClient,
@@ -50,19 +52,38 @@ export class CreateRecipePage implements OnInit {
       this.formValueChangesSubscription.unsubscribe();
     }
   }
-//TODO: Poner un Toast para indicar que se ha creado y resetear el formulario
+  //TODO: Poner un Toast para indicar que se ha creado y resetear el formulario
   public async createRecipes(): Promise<void> {
     console.log(this.dynamicForm);
-    const recipeStep: string[] = [];
+    this.recipeStep = [];
     console.log(this.dynamicForm.controls['recipe-steps'].value.step);
     this.dynamicForm.controls['recipe-steps'].value.forEach((element) => {
-      recipeStep.push(element.step);
+      this.recipeStep.push(element.step);
     });
 
-    console.log('recipeStep', recipeStep);
+    console.log('recipeStep', this.recipeStep);
     this.orderTimeConsumeData();
     console.log(this.timeConsumeParams);
-    if (this.dynamicForm.valid && this.selectedUploadFile) {
+    console.log(
+      'Ingredientes',
+      this.dynamicForm.controls['recipe-ingredients'].value.length
+    );
+    console.log('STEPS:', this.recipeStep.length);
+    console.log(
+      'FORM:',
+      this.dynamicForm.valid,
+      'FILE:',
+      this.selectedUploadFile,
+      'STEPS,INGREDE:',
+      this.ingredientsStepsValid()
+    );
+    if (
+      this.dynamicForm.valid &&
+      this.selectedUploadFile &&
+      this.ingredientsStepsValid() &&
+      this.dynamicForm.controls['time-consume'].value.length > 1 &&
+      !this.isFieldValid
+    ) {
       const params: any = {
         tipo_receta: this.timeConsumeParams,
         tipo_receta_mundo: this.dynamicForm.controls['world-recipes'].value,
@@ -73,13 +94,16 @@ export class CreateRecipePage implements OnInit {
         creado_por: localStorage.getItem('userEmail'),
         nombreReceta: this.dynamicForm.controls['recipe-name'].value,
         imagenReceta: this.selectedUploadFile,
-        pasos_receta: recipeStep,
+        pasos_receta: this.recipeStep,
         ingredientes: this.dynamicForm.controls['recipe-ingredients'].value,
       };
 
       this.createRecipeService.createRecipe(params).subscribe(
         (data: any) => {
-          console.log(data);
+          console.log(
+            'Datos de la respuesta del server al crear la receta!!!!',
+            data
+          );
           this.presentSuccessToast();
           this.dynamicForm.reset();
           this.resetInputFileOnSubmitted = true;
@@ -92,10 +116,21 @@ export class CreateRecipePage implements OnInit {
       );
     } else {
       //TODO: HA¡acer con setTime out que se ve unos segundos y despues que desaparezca como los otros
+      console.log('por aqui a ver que pasa');
       this.showError = true;
     }
   }
 
+  private ingredientsStepsValid(): boolean {
+    if (
+      this.dynamicForm.controls['recipe-ingredients'].value.length >= 1 &&
+      this.recipeStep.length >= 1
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public showErrorMsg(): boolean {
     return this.showError;
   }
@@ -118,23 +153,28 @@ export class CreateRecipePage implements OnInit {
     this.showError = false;
   }
 
+  public validFieldEventHandler(isValid: boolean): void {
+    this.isFieldValid = isValid;
+    console.log('VALIDACION DEL CAMPO!!', this.isFieldValid);
+  }
+
   private orderTimeConsumeData(): void {
     const timeConsumeArray = this.dynamicForm.controls['time-consume'].value;
     console.log(timeConsumeArray);
-    
-    if (timeConsumeArray.some(element => element.order)) {
-      timeConsumeArray.sort((a, b) => (a.order || 0) - (b.order || 0));
-      this.timeConsumeParams = '';
-      for (const element of timeConsumeArray) {
-        if (element.value && element.value !== 'no-aply') {
-          this.timeConsumeParams += element.value + ',';
+    if (timeConsumeArray) {
+      if (timeConsumeArray.some((element) => element.order)) {
+        timeConsumeArray.sort((a, b) => (a.order || 0) - (b.order || 0));
+        this.timeConsumeParams = '';
+        for (const element of timeConsumeArray) {
+          if (element.value && element.value !== 'no-aply') {
+            this.timeConsumeParams += element.value + ',';
+          }
         }
+        this.timeConsumeParams = this.timeConsumeParams.slice(0, -1);
+      } else {
+        this.timeConsumeParams = 'no-aply';
       }
-      this.timeConsumeParams = this.timeConsumeParams.slice(0, -1);
-    } else {
-      this.timeConsumeParams = 'no-aply';
     }
-    
     console.log(this.timeConsumeParams);
   }
 

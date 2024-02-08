@@ -21,6 +21,7 @@ export class FullRecipePage implements OnInit {
   recipeId: number; // Declaración de la variable para almacenar el recipeId
   //tipar
   originPage: string;
+  serverError: boolean = false;
   recipeScoring: number;
   base64Photo: string;
   base64Logo: string;
@@ -59,15 +60,17 @@ export class FullRecipePage implements OnInit {
       //await this.getDataFromServerFilteredRecepis();
 
       await this.getDataFromServer(this.recipeId);
-      await this.checkFavouriteRecipe(
-        this.recipeId,
-        localStorage.getItem('userEmail')
-      );
-      await this.getScoringRecipeById(this.recipeId);
-      await this.getScoringRecipeByUser(
-        this.recipeId,
-        localStorage.getItem('userEmail')
-      );
+      if (!this.serverError) {
+        await this.checkFavouriteRecipe(
+          this.recipeId,
+          localStorage.getItem('userEmail')
+        );
+        await this.getScoringRecipeById(this.recipeId);
+        await this.getScoringRecipeByUser(
+          this.recipeId,
+          localStorage.getItem('userEmail')
+        );
+      }
     });
   }
 
@@ -108,7 +111,6 @@ export class FullRecipePage implements OnInit {
         this.recipeId,
         localStorage.getItem('userEmail'),
 
-        
         this.selectedRating
       );
       this.isVoting = true;
@@ -202,8 +204,13 @@ export class FullRecipePage implements OnInit {
   private getDataFromServer(recipeId: number): Promise<void> {
     return new Promise<void>((resolve) => {
       this.recipesService.getRecipesById(recipeId).subscribe((data: any) => {
-        this.recipe_Full = data;
-        this.calculateRecipeCalories();
+        console.log(data);
+        if (data.error) {
+          this.serverError = true;
+        } else {
+          this.recipe_Full = data;
+          this.calculateRecipeCalories();
+        }
         resolve();
       });
     });
