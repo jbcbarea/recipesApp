@@ -7,13 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  
+  constructor() {}
 
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-
+  ngOnInit() {}
 }

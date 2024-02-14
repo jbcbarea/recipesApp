@@ -80,7 +80,11 @@ export class HomePage implements OnInit {
   }
   //TODO: Aqui tengo que meterlo en lo de favoritas para que cada vez que lo actualize pues se ponga esa receta
   public async ionViewWillEnter() {
-    await this.getDataFromServer();
+    if(this.selectedRecipeType && this.selectedRecipeType === 'world') {
+      await this.getDataFromServer();
+    } else if(this.selectedRecipeType) {
+      await this.geRecipesWorld(this.selectedRecipeType);
+    }
   }
 
   public navigateToFullRecipes(recipeId:number) {

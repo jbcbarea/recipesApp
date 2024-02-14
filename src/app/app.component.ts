@@ -13,10 +13,11 @@ export class AppComponent {
   constructor(private platform: Platform,private navCtrl: NavController) {
    // this.initializeApp();
   }
-
+/*
   initializeApp() {
     this.platform.ready().then(() => {
       this.navCtrl.navigateRoot('/splash');
     });
   }
+  */
 }
