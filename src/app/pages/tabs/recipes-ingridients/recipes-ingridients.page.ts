@@ -4,6 +4,7 @@ import { questionGroup } from 'src/app/models/interfaces/question-group.interfac
 import { FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormUtils } from 'src/app/utils/form.utils';
+import { IngridientsService } from 'src/app/services/ingridients.service';
 
 @Component({
   selector: 'app-recipes-ingridients',
@@ -24,9 +25,11 @@ export class RecipesIngridientsPage implements OnInit {
     'pescados',
   ];
   elementsSelected: boolean = false;
+timeError:boolean = false;
   ingridientsParams: string[] = [];
   ingridientParamGood: string[] = [];
   timeConsumeParams: string;
+ingridientsFromServer:any[];
   userEmail: string;
   showError: boolean = false;
   dynamicForm: FormGroup;
@@ -38,7 +41,8 @@ export class RecipesIngridientsPage implements OnInit {
   constructor(
     private readonly http: HttpClient,
     private readonly formUtils: FormUtils,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly ingridientsService:IngridientsService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,6 +57,22 @@ export class RecipesIngridientsPage implements OnInit {
       }
     );
   }
+
+  async ionViewWillEnter(): Promise<void> {
+
+   await  this.getIngridientsFromServer();
+  }
+
+  private async getIngridientsFromServer(): Promise<void> {
+    let accordionIng = [];
+    this.ingridientsService.getIngridients().subscribe((data: any) => {
+      this.ingridientsFromServer = { ...data.ingredientes };
+    
+     
+  
+        console.log('No hay ingredientes problemas con la base de datos');
+      });
+}
 
   ngOnDestroy(): void {
     // Unsubscribe from form value changes to prevent memory leaks
@@ -69,7 +89,7 @@ export class RecipesIngridientsPage implements OnInit {
     console.log('a ver que hace esto!!!', this.ingridientParamGood);
     if (
       this.dynamicForm.valid &&
-      this.ingridientParamGood.length >= 2 &&
+      this.ingridientParamGood.length >= 1 &&
       this.dynamicForm.controls['restricciones-alimentarias'].value !==
         undefined &&
       this.ingridientParamGood
@@ -101,7 +121,7 @@ export class RecipesIngridientsPage implements OnInit {
       this.router.navigate(['/tabs/recipes-filtered'], { queryParams: params });
     } else {
       this.showError = true;
-
+this.setErrorTime();
       //setTimeout(() =>{
       //  this.showError = false;
       //},3000);
@@ -112,6 +132,13 @@ export class RecipesIngridientsPage implements OnInit {
     return this.showError;
   }
 
+
+  private setErrorTime(): void {
+    setTimeout(() => {
+      this.timeError = false;
+    }, 3000);
+    this.timeError = true;
+  }
   private async getDataFromFileConfiguration(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.get(`assets/configurations/recipes-ingridients.json`).subscribe(

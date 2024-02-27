@@ -75,8 +75,13 @@ export class UserUpdatePage implements OnInit {
               console.log(response);
               if (response) {
                 //Poner un Toast mirar
-                this.presentSuccessToast();
-                this.updateForm.reset();
+                if (response.success === true) {
+                  this.presentSuccessToast();
+                  this.updateForm.reset();
+                }else{
+                  this.presentErrorToastOldPassword();
+                  this.updateForm.reset();
+                }
               } else {
                 this.presentErrorToast();
               }
@@ -124,7 +129,15 @@ export class UserUpdatePage implements OnInit {
     });
     toast.present();
   }
-
+  private async presentErrorToastOldPassword(): Promise<void> {
+    const toast = await this.toastController.create({
+      message:
+        'Error al actualizar las credenciales, la antigua contraseña introducida no es correcta',
+      duration: 3000,
+      position: 'bottom',
+    });
+    toast.present();
+  }
   private async presentErrorToast(): Promise<void> {
     const toast = await this.toastController.create({
       message:

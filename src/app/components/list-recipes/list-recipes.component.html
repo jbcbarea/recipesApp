@@ -12,10 +12,11 @@
       </p>
     </ion-text>
     <span>
-      <ion-icon name="star"></ion-icon>
+      <ion-icon name="thumbs-up"></ion-icon>
       {{recipe?.puntuacion}} 
     </span>
-    {{recipe?.tiempo_preparacion}} mins - Nº comensales {{recipe?.comensales}} 
+  
+     -   <ion-icon name="timer"></ion-icon> {{recipe?.tiempo_preparacion}} mins 
     <ion-text ><p class="distance"><span  [ngClass]="getDifficulty()">Dificultad - {{recipe?.dificultad}}</span></p>
     </ion-text>
   </ion-label>

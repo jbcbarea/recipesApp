@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractQuestionComponent } from '../abstract-question.component';
 import {
   FormControl,
@@ -25,6 +25,7 @@ export class CreateIngredientsComponent
   extends AbstractQuestionComponent
   implements OnInit
 {
+ 
   @ViewChild('ingredientSelect') ingredientSelect: IonSelect;
   searchTerm: string = '';
  
@@ -41,10 +42,7 @@ export class CreateIngredientsComponent
   }
 
   ngOnInit() {
-    this.ingredientsService.getIngridientsByName().subscribe((data: any) => {
-      this.ingredi = data.sort((a, b) => a.localeCompare(b));
-    });
-
+    
     if (this.ingredients) {
       this.parentForm.controls[this.question.name].setValue(this.ingredients);
     }

@@ -46,6 +46,7 @@
                             [parentForm]="dynamicForm"
                             [formDirective]="form"
                             [showError]="showError"
+                            [ing]="ingredientsData"
                             (validField)="validFieldEventHandler($event)"
                           ></app-form-questions>
                         </ng-container>
@@ -78,13 +79,16 @@
                     >
                       Crea una nueva receta
                     </ion-button>
-                    <ng-container *ngIf="showErrorMsg()">
+                    <ng-container *ngIf="showErrorMsg() && timeError">
                       <h2 class="text-danger">
                         <small class="border-bottom pb-1"
                           ><strong
                             >*Algun campo requiere su atención.</strong
-                          ></small
-                        >
+                          ></small>
+                          <small class="border-bottom pb-1"
+                          ><strong
+                            >{{serverError}}</strong
+                          ></small>
                       </h2>
                     </ng-container>
                   </div>

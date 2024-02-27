@@ -12,6 +12,8 @@ export class AbstractQuestionComponent {
   @Input() parentForm: FormGroup;
   @Input() formDirective: FormGroupDirective;
   @Input() showError:boolean;
+  @Input() ing:string[];
+  @Input() ingAc:any[];
 
   get name(): FormControl {
     return this.parentForm.controls[this.question.name] as FormControl;

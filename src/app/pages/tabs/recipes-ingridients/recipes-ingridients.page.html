@@ -39,6 +39,7 @@
                           [parentForm]="dynamicForm"
                           [formDirective]="form"
                           [showError]="showError"
+                          [ingAc]=""
                         ></app-form-questions>
                       </ng-container>
                     </div>
@@ -46,7 +47,7 @@
                 </ng-container>
               </div>
               <div class="card-footer ion-text-center">
-                <ng-container *ngIf="showErrorMsg() &&  this.ingridientParamGood.length <= 2 ">
+                <ng-container *ngIf="showErrorMsg() &&  this.ingridientParamGood.length <= 1 ">
                   <ion-item class="error-item"lines="none">
                     <ion-text color="danger" >Campo requerido</ion-text>
                   </ion-item>

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  private API_URL = 'http://localhost:3000';
-  // private API_URL = 'http://192.168.1.135:3000';
+  //private API_URL = environment.apiUrl;
+  //private API_URL = 'http://localhost:3000';
+  private API_URL = environment.apiUrl;
+   //private API_URL = 'http://192.168.1.135:3000';
   constructor(private http: HttpClient) {}
 
   public getRecipes(): Observable<any[]> {

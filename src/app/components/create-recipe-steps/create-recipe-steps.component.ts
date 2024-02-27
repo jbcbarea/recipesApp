@@ -34,7 +34,7 @@ export class CreateRecipeStepsComponent extends AbstractQuestionComponent  imple
   }
 
   addStep() {
-    //this.recipeSteps.push({step:''});
+    this.recipeSteps.push({step:''});
     if (this.parentForm && this.question && this.parentForm.controls[this.question.name]) {
       this.parentForm.controls[this.question.name].setValue(this.recipeSteps);
     }

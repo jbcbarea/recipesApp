@@ -4,6 +4,7 @@ import { FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { CreateRecipeService } from 'src/app/services/create-recipe.service';
+import { IngridientsService } from 'src/app/services/ingridients.service';
 import { FormUtils } from 'src/app/utils/form.utils';
 
 @Component({
@@ -19,6 +20,8 @@ export class CreateRecipePage implements OnInit {
   @ViewChild('form') form: NgForm;
   timeConsumeParams: string;
   showError: boolean = false;
+  timeError: boolean = false;
+  serverError: string = '';
   recipeStep: string[];
   resetInputFileOnSubmitted: boolean = false;
   dynamicForm: FormGroup;
@@ -27,16 +30,19 @@ export class CreateRecipePage implements OnInit {
   selectedUploadFile: string = '';
   formValueChangesSubscription: any;
   isFieldValid: boolean;
+  ingredientsData:string[]  = [];
 
   constructor(
     private readonly http: HttpClient,
     private readonly formUtils: FormUtils,
     private readonly router: Router,
     private createRecipeService: CreateRecipeService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private ingredientsService: IngridientsService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    //TODO: Para controlar que no hay datos en el servidor....
     this.userEmail = localStorage.getItem('userEmail');
     this.initConfiguration = await this.getDataFromFileConfiguration();
     this.dynamicForm = await this.formUtils.buildForm(this.initConfiguration);
@@ -46,6 +52,27 @@ export class CreateRecipePage implements OnInit {
     // });
   }
 
+  async ionViewWillEnter(): Promise<void> {
+    this.serverError = '';
+    this.ingredientsService.getIngridientsByName().subscribe(
+      (data: any) => {
+        this.ingredientsData = data.sort((a, b) => a.localeCompare(b));
+      },
+      (error) => {
+        if (error) {
+          console.log('Hay error!!1');
+          this.showError = true;
+          this.serverError = error;
+        } else {
+          console.log('No hay error');
+        }
+        //this.errorMessage = error;
+        // Aquí puedes mostrar el mensaje de error al usuario, por ejemplo, en una alerta o en el HTML
+        console.log('Error:', error);
+      }
+    );
+  }
+  
   ngOnDestroy(): void {
     // Unsubscribe from form value changes to prevent memory leaks
     if (this.formValueChangesSubscription) {
@@ -116,11 +143,18 @@ export class CreateRecipePage implements OnInit {
       );
     } else {
       //TODO: HA¡acer con setTime out que se ve unos segundos y despues que desaparezca como los otros
-      console.log('por aqui a ver que pasa');
+      
       this.showError = true;
+      this.setErrorTime();
     }
   }
 
+  private setErrorTime(): void {
+    setTimeout(() => {
+      this.timeError = false;
+    }, 3000);
+    this.timeError = true;
+  }
   private ingredientsStepsValid(): boolean {
     if (
       this.dynamicForm.controls['recipe-ingredients'].value.length >= 1 &&
@@ -157,6 +191,7 @@ export class CreateRecipePage implements OnInit {
     this.isFieldValid = isValid;
     console.log('VALIDACION DEL CAMPO!!', this.isFieldValid);
   }
+
 
   private orderTimeConsumeData(): void {
     const timeConsumeArray = this.dynamicForm.controls['time-consume'].value;

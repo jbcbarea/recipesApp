@@ -5,7 +5,7 @@
     <ng-container *ngFor="let item of ingredients; let i = index">
       <ion-item class="ingredient-item">
         <ion-select [(ngModel)]="item.ingredient" class="ingredient-input" aria-label="Selecciona ingrediente" interface="popover" placeholder="Ingrediente">
-          <ion-select-option *ngFor="let i of ingredi" [value]="i">{{i}}</ion-select-option></ion-select>
+          <ion-select-option *ngFor="let i of ing" [value]="i">{{i}}</ion-select-option></ion-select>
           <ion-input label="Cantidad" type="number" label-placement="floating"  placeholder="Enter text" [(ngModel)]="item.quantity" class="ingredient-quantity"></ion-input>
           <ion-select [(ngModel)]="item.measurement" class="ingredient-input" aria-label="Selecciona ingrediente" interface="popover" placeholder="Medida">
           <ion-select-option *ngFor="let elements of unitMeasurement" [value]="elements">{{elements}}</ion-select-option></ion-select>
