@@ -5,6 +5,7 @@ import { FormGroup, FormGroupDirective, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormUtils } from 'src/app/utils/form.utils';
 import { IngridientsService } from 'src/app/services/ingridients.service';
+import { SharedDataService } from 'src/app/services/shared-data-service.service';
 
 @Component({
   selector: 'app-recipes-ingridients',
@@ -25,11 +26,11 @@ export class RecipesIngridientsPage implements OnInit {
     'pescados',
   ];
   elementsSelected: boolean = false;
-timeError:boolean = false;
+  timeError: boolean = false;
   ingridientsParams: string[] = [];
   ingridientParamGood: string[] = [];
   timeConsumeParams: string;
-ingridientsFromServer:any[];
+  ingridientsFromServer: any[];
   userEmail: string;
   showError: boolean = false;
   dynamicForm: FormGroup;
@@ -42,7 +43,8 @@ ingridientsFromServer:any[];
     private readonly http: HttpClient,
     private readonly formUtils: FormUtils,
     private readonly router: Router,
-    private readonly ingridientsService:IngridientsService
+    private readonly ingridientsService: IngridientsService,
+    private sharedDataService: SharedDataService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -59,20 +61,11 @@ ingridientsFromServer:any[];
   }
 
   async ionViewWillEnter(): Promise<void> {
-
-   await  this.getIngridientsFromServer();
+    if (this.sharedDataService.mensaje === 'IngCreado') {
+      await this.ngOnInit();
+      this.sharedDataService.mensaje = '';
+    }
   }
-
-  private async getIngridientsFromServer(): Promise<void> {
-    let accordionIng = [];
-    this.ingridientsService.getIngridients().subscribe((data: any) => {
-      this.ingridientsFromServer = { ...data.ingredientes };
-    
-     
-  
-        console.log('No hay ingredientes problemas con la base de datos');
-      });
-}
 
   ngOnDestroy(): void {
     // Unsubscribe from form value changes to prevent memory leaks
@@ -85,7 +78,7 @@ ingridientsFromServer:any[];
     this.checkListAccordionIngridientsParams();
     console.log(this.dynamicForm);
     this.orderTimeConsumeData();
-    console.log('EOOOO',this.elementsSelected);
+    console.log('EOOOO', this.elementsSelected);
     console.log('a ver que hace esto!!!', this.ingridientParamGood);
     if (
       this.dynamicForm.valid &&
@@ -95,17 +88,7 @@ ingridientsFromServer:any[];
       this.ingridientParamGood
     ) {
       this.showError = false;
-      console.log('1', this.timeConsumeParams);
-      console.log('2', this.dynamicForm.controls['prep-time'].value);
-      console.log('3', this.dynamicForm.controls['difficulty'].value);
-      console.log('4', this.dynamicForm.controls['world-recipes'].value);
-      console.log('5', this.ingridientParamGood);
-      console.log('6', this.dynamicForm.controls['score'].value);
-      console.log(
-        '7',
-        this.dynamicForm.controls['restricciones-alimentarias'].value
-      );
-      console.log('8', this.dynamicForm.controls['guest-number'].value);
+   
       const params: any = {
         tipoReceta: this.timeConsumeParams,
         tiempoPreparacion: this.dynamicForm.controls['prep-time'].value,
@@ -117,11 +100,10 @@ ingridientsFromServer:any[];
           this.dynamicForm.controls['restricciones-alimentarias'].value,
         comensales: this.dynamicForm.controls['guest-number'].value,
       };
-
       this.router.navigate(['/tabs/recipes-filtered'], { queryParams: params });
     } else {
       this.showError = true;
-this.setErrorTime();
+      this.setErrorTime();
       //setTimeout(() =>{
       //  this.showError = false;
       //},3000);
@@ -131,7 +113,6 @@ this.setErrorTime();
   public showErrorMsg(): boolean {
     return this.showError;
   }
-
 
   private setErrorTime(): void {
     setTimeout(() => {
@@ -205,7 +186,7 @@ this.setErrorTime();
       } else {
         this.timeConsumeParams = this.timeConsumeParams.slice(0, -1);
       }
-    }else {
+    } else {
       this.timeConsumeParams = 'no-aply';
       this.elementsSelected = false;
     }

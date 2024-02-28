@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { IngridientsService } from 'src/app/services/ingridients.service';
+import { SharedDataService } from 'src/app/services/shared-data-service.service';
 import { FormUtils } from 'src/app/utils/form.utils';
 
 @Component({
@@ -23,7 +25,9 @@ export class CreateIngPage implements OnInit {
     private readonly http: HttpClient,
     private readonly formUtils: FormUtils,
     private readonly router: Router,
-    private readonly ingredientService: IngridientsService
+    private readonly ingredientService: IngridientsService,
+    private readonly toastController:ToastController,
+    private sharedDataService: SharedDataService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -32,11 +36,12 @@ export class CreateIngPage implements OnInit {
     this.dynamicForm = await this.formUtils.buildForm(this.initConfiguration);
   }
 
-
   //TODO: Aquí me falta hacer lo de los TOast al crear el ingrediente vale?? Acuerdate amigo!
 
   public async createNewIngredient(): Promise<void> {
-    if (this.dynamicForm.valid) {
+    console.log(this.dynamicForm);
+    if (this.dynamicForm.valid && (this.dynamicForm.controls['ing-feature'].value[0].calories !== null && 
+    this.dynamicForm.controls['ing-feature'].value[0].fat !== null && this.dynamicForm.controls['ing-feature'].value[0].protein !== null )) {
       const params: any = {
         tipo: this.dynamicForm.controls['ing-group'].value,
         nombre: this.dynamicForm.controls['ingredient-name'].value,
@@ -53,7 +58,16 @@ export class CreateIngPage implements OnInit {
 
   private addNewIngredient(params: any): void {
     this.ingredientService.addNewIngredient(params).subscribe((data: any) => {
-      console.log(data);
+      console.log('Nuevo Ing',data);
+      if(data) {
+        this.sharedDataService.mensaje = 'IngCreado';
+        this.presentSuccessToast();
+        this.dynamicForm.reset();
+        //this.showError = false;
+        //this.timeError = false;
+      } else {
+        this.presentErrorToast();
+      }
     });
   }
 
@@ -81,6 +95,24 @@ export class CreateIngPage implements OnInit {
         }
       );
     });
+  }
+
+  private async presentSuccessToast(): Promise<void> {
+    const toast = await this.toastController.create({
+      message: 'Ingrediente creado exitosamente',
+      duration: 2000, // Duración del toast en milisegundos
+      position: 'bottom', // Posición del toast en la pantalla ('top', 'middle' o 'bottom')
+    });
+    toast.present();
+  }
+
+  private async presentErrorToast(): Promise<void> {
+    const toast = await this.toastController.create({
+      message: 'Error al crear el ingrediente',
+      duration: 2000,
+      position: 'bottom',
+    });
+    toast.present();
   }
 
   public cleanForm(): void {

@@ -39,7 +39,7 @@
                           [parentForm]="dynamicForm"
                           [formDirective]="form"
                           [showError]="showError"
-                          [ingAc]=""
+                          [ingAc]="ingridientsFromServer"
                         ></app-form-questions>
                       </ng-container>
                     </div>
@@ -47,7 +47,7 @@
                 </ng-container>
               </div>
               <div class="card-footer ion-text-center">
-                <ng-container *ngIf="showErrorMsg() &&  this.ingridientParamGood.length <= 1 ">
+                <ng-container *ngIf="showErrorMsg() &&  this.ingridientParamGood.length < 1 ">
                   <ion-item class="error-item"lines="none">
                     <ion-text color="danger" >Campo requerido</ion-text>
                   </ion-item>
@@ -59,7 +59,7 @@
                   <ion-button expand="full" color="secondary" (click)="filterRecipes()">
                     Filtrar Recetas
                   </ion-button>
-                  <ng-container *ngIf="showErrorMsg()">
+                  <ng-container *ngIf="showErrorMsg() && timeError">
                   <h2 class="text-danger">
                     <small class="border-bottom pb-1"
                       ><strong>*Algun campo requiere su atención</strong></small

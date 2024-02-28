@@ -1,5 +1,5 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -67,8 +67,16 @@ export class ListAccordionComponent
         }
       }
     });
-
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['ingAc'] && !changes['ingAc'].firstChange) {
+      // Aquí puedes ejecutar la lógica necesaria cada vez que ingAc cambie
+      // Por ejemplo, puedes llamar a una función para actualizar los datos
+      this.ngOnInit();
+    }
+  }
+  
 
   public onCheckboxChange(item: string, event: any) {
     if (event.detail.checked) {

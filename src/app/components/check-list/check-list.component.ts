@@ -32,7 +32,6 @@ export class CheckListComponent
         });
       }
     });
-    console.log(this.cusineType);
   }
 
   public hasImages(choices: any[]): boolean {
