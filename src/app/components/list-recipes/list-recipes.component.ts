@@ -19,7 +19,9 @@ export class ListRecipesComponent  implements OnInit {
   isHovered: boolean = false;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
  public getDifficulty(): string {
     if (this.recipe && this.recipe.dificultad) {

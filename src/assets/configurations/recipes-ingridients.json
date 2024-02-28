@@ -129,9 +129,14 @@
               "order": 10
             },
             {
-              "key": "99",
-              "value": "No aplica",
+              "key": "15",
+              "value": "15",
               "order": 11
+            },
+            {
+              "key": "20",
+              "value": "20",
+              "order": 12
             }
           ]
         },
@@ -324,24 +329,14 @@
               "order": 2,
               "img": "dairy.png"
             },
-            {
-              "key": "no-egg",
-              "value": "Cocina Sin Huevos",
-              "order": 3,
-              "img": "eggs.png"
-            },
+           
             {
               "key": "no-nuts",
               "value": "Cocina Sin Frutos Secos",
               "order": 4,
               "img": "peanut.png"
             },
-            {
-              "key": "no-seafood",
-              "value": "Cocina Sin Mariscos",
-              "order": 5,
-              "img": "shellfish.png"
-            },
+            
             {
               "key": "no-aply",
               "value": "No aplica",
@@ -397,6 +392,66 @@
           "questionTypeId": 9,
           "order": 6,
           "img": "fish.png"
+        }, {
+          "name": "legumbres",
+          "label": "Legumbres",
+          "questionTypeId": 9,
+          "order": 7,
+          "img": "peas.png"
+        },
+        {
+          "name": "mariscos",
+          "label": "Mariscos",
+          "questionTypeId": 9,
+          "order": 8,
+          "img": "seafood.png"
+        },
+        {
+          "name": "aceites",
+          "label": "Aceites y Vinagres",
+          "questionTypeId": 9,
+          "order": 9,
+          "img": "oils.png"
+        },
+        {
+          "name": "especias",
+          "label": "Hierbas y Especias",
+          "questionTypeId": 9,
+          "order": 10,
+          "img": "salt.png"
+        }, {
+          "name": "salsas",
+          "label": "Salsas y Aderezos",
+          "questionTypeId": 9,
+          "order": 11,
+          "img": "sauce.png"
+        }, {
+          "name": "bebidas",
+          "label": "Bebidas y Jugos",
+          "questionTypeId": 9,
+          "order": 12,
+          "img": "breberage.png"
+        },
+        {
+          "name": "panaderia",
+          "label": "Pan,cereales y Pasta",
+          "questionTypeId": 9,
+          "order": 13,
+          "img": "sweats.png"
+        },
+        {
+          "name": "quesos",
+          "label": "Quesos",
+          "questionTypeId": 9,
+          "order": 14,
+          "img": "cheese.png"
+        },
+        {
+          "name": "huevos",
+          "label": "Huevos",
+          "questionTypeId": 9,
+          "order": 15,
+          "img": "eggs (2).png"
         }
       ]
     }

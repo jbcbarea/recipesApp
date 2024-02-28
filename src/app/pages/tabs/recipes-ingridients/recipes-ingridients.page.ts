@@ -24,6 +24,18 @@ export class RecipesIngridientsPage implements OnInit {
     'lacteos',
     'frutosSecos',
     'pescados',
+    'quesos',
+    'huevos',
+    'panaderia',
+    'bebidas',
+    'salsas',
+    'especias',
+    'aceites',
+    'mariscos',
+    'frutosSecos',
+    'legumbres',
+    'lacteos',
+    
   ];
   elementsSelected: boolean = false;
   timeError: boolean = false;
@@ -76,10 +88,7 @@ export class RecipesIngridientsPage implements OnInit {
 
   public async filterRecipes(): Promise<void> {
     this.checkListAccordionIngridientsParams();
-    console.log(this.dynamicForm);
     this.orderTimeConsumeData();
-    console.log('EOOOO', this.elementsSelected);
-    console.log('a ver que hace esto!!!', this.ingridientParamGood);
     if (
       this.dynamicForm.valid &&
       this.ingridientParamGood.length >= 1 &&

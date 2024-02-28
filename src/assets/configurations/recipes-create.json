@@ -77,11 +77,6 @@
               "key": "england",
               "value": "Comida Inglésa",
               "order": 10
-            },
-            {
-              "key": "no-aply",
-              "value": "No aplica",
-              "order": 11
             }
           ]
         },
@@ -297,22 +292,10 @@
               "img": "dairy.png"
             },
             {
-              "key": "no-egg",
-              "value": "Cocina Sin Huevos",
-              "order": 3,
-              "img": "eggs.png"
-            },
-            {
               "key": "no-nuts",
               "value": "Cocina Sin Frutos Secos",
               "order": 4,
               "img": "peanut.png"
-            },
-            {
-              "key": "no-seafood",
-              "value": "Cocina Sin Mariscos",
-              "order": 5,
-              "img": "shellfish.png"
             },
             {
               "key": "no-aply",

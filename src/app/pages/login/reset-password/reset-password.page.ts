@@ -30,7 +30,6 @@ export class ResetPasswordPage implements OnInit {
     this.authUsersService.resetPassword(this.form.controls['email'].value)
     .subscribe(
       (response) => {
-        console.log('EOOOOOOOOO',response); 
         if(response.response === ServerResponse.userNotFound) {
           this.userNotFound = true;
           setTimeout(() =>{

@@ -185,6 +185,7 @@ export class CreateRecipePage implements OnInit {
   public cleanForm(): void {
     this.dynamicForm.reset();
     this.showError = false;
+    this.resetInputFileOnSubmitted = true;
   }
 
   public validFieldEventHandler(isValid: boolean): void {
