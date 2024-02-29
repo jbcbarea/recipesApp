@@ -159,7 +159,7 @@
           "required": true,
           "choices": [
             {
-              "key": "Facil",
+              "key": "Fácil",
               "value": "Fácil",
               "order": 1
             },
@@ -169,7 +169,7 @@
               "order": 2
             },
             {
-              "key": "Dificil",
+              "key": "Difícil",
               "value": "Difícil",
               "order": 3
             }

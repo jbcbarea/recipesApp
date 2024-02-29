@@ -149,7 +149,7 @@
           "required": true,
           "choices": [
             {
-              "key": "Facil",
+              "key": "Fácil",
               "value": "Fácil",
               "order": 1
             },
@@ -159,7 +159,7 @@
               "order": 2
             },
             {
-              "key": "Dificil",
+              "key": "Difícil",
               "value": "Difícil",
               "order": 3
             },
@@ -303,7 +303,7 @@
           "questionTypeId": 4,
           "order": 2,
           "required": false,
-          "info": "Podrás filtrar por recetas según su horario de consumo.Puedes seleccionar varias opciones ya que hay recetas pueden ser consumidas en diversas zonas horarias. Dejar sin selección todas las opciones significa que no se aplicaría el filtro."
+          "info": "Podrás filtrar por recetas según su horario de consumo.Puedes seleccionar varias opciones ya que hay recetas pueden ser consumidas en diversas zonas horarias."
         }
       ]
     },

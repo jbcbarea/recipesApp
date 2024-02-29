@@ -48,7 +48,7 @@ export class FullRecipePage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     // Obtener el recipeId de la ruta actual
-    console.log('DESDE FULL RECIPE');
+
     this.route.params.subscribe(async (params) => {
       this.recipeId = params['recipeId'];
       this.originPage = this.route.snapshot.queryParamMap.get('page');
@@ -84,10 +84,10 @@ export class FullRecipePage implements OnInit {
         localStorage.getItem('userEmail'),
         this.recipeId
       );
-      console.log('Receta añadida a favoritas');
+    
       this.favouriteRecipe = true;
     } else {
-      console.log('Ya está introducida esa receta');
+      
     }
   }
 
@@ -96,12 +96,11 @@ export class FullRecipePage implements OnInit {
       await this.favRecipeService
         .deleteFavourite(localStorage.getItem('userEmail'), this.recipeId)
         .subscribe((data) => {
-          console.log(data);
-          console.log('Receta eliminada de favoritas'); // Update the message
+        
         });
       this.favouriteRecipe = false;
     } else {
-      console.log('Ya está introducida esa receta');
+      
     }
   }
 
@@ -191,10 +190,7 @@ export class FullRecipePage implements OnInit {
         //const filterComensales =Math.abs(this.comenFilter - this.recipe_Full.comensales);
         this.recipeCalories =
           (totalCalories * this.comenFilter) / this.recipe_Full.comensales;
-        console.log(this.recipeCalories);
-        //   if(Math.sign(filterComensales) === 1) {
-        //     totalCaloriesAfterFilter = totalCalories
-        //   }
+      
       }
     } else {
       this.recipeCalories = totalCalories;
@@ -204,11 +200,12 @@ export class FullRecipePage implements OnInit {
   private getDataFromServer(recipeId: number): Promise<void> {
     return new Promise<void>((resolve) => {
       this.recipesService.getRecipesById(recipeId).subscribe((data: any) => {
-        console.log(data);
+        
         if (data.error) {
           this.serverError = true;
         } else {
           this.recipe_Full = data;
+          this.recipe_Full.fecha_creacion =this.recipe_Full.fecha_creacion.split('T')[0],
           this.calculateRecipeCalories();
         }
         resolve();
@@ -224,7 +221,7 @@ export class FullRecipePage implements OnInit {
       .checkFavouriteRecipe(userMail, recipeId)
       .subscribe((data: any) => {
         this.favouriteRecipe = data;
-        console.log(this.favouriteRecipe);
+        
       });
   }
 
@@ -245,7 +242,7 @@ export class FullRecipePage implements OnInit {
       .getRecipeScoreByUser(recipeId, userEmail)
       .subscribe((data: any) => {
         this.recipeScoringByUser = data.recipeScoreUser;
-        console.log(this.recipeScoringByUser);
+        
         if (this.recipeScoringByUser !== null) {
           this.isVoting = true;
         }
@@ -261,11 +258,11 @@ export class FullRecipePage implements OnInit {
       .addRecipeScore(recipeId, userMail, recipeScoring)
       .subscribe(
         (data: any) => {
-          console.log(data);
+          
           this.presentSuccessToastScoring();
         },
         (error: any) => {
-          console.log(error);
+          
           this.presentErrorToastScoring();
         }
       );
@@ -291,11 +288,10 @@ export class FullRecipePage implements OnInit {
   ): Promise<void> {
     this.favRecipeService.addFavouriteRecipe(userMail, recipeId).subscribe(
       (data: any) => {
-        console.log(data);
         this.presentSuccessToast();
       },
       (error: any) => {
-        console.log(error);
+    
         this.presentErrorToast();
       }
     );

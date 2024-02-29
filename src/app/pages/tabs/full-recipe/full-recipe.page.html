@@ -21,8 +21,8 @@
       <ion-card-content>
         <ion-row class="recipe-info">
           <ion-col size="6" class="info-item">
-            <ion-icon name="flame" class="info-icon"></ion-icon>
-            {{recipe_Full.nombrereceta}}
+            <ion-icon name="globe" class="info-icon"></ion-icon>
+            {{recipe_Full.tipo_receta_mundo}}
           </ion-col>
           <ng-container *ngIf="!comenFilter">
             <ion-col size="6" class="info-item">
@@ -38,19 +38,19 @@
           </ng-container>
           <ion-col size="6" class="info-item">
             <ion-icon name="timer" class="info-icon"></ion-icon>
-            Tiempo de Preparación: 45 min
+            Tiempo de Preparación: {{recipe_Full.tiempo_preparacion}} min
           </ion-col>
           <ion-col size="6" class="info-item">
             <ion-icon name="star" class="info-icon"></ion-icon>
-            Dificultad: Media
+            Dificultad: {{recipe_Full.dificultad}}
           </ion-col>
           <ion-col size="6" class="info-item">
             <ion-icon name="calendar" class="info-icon"></ion-icon>
-            Creado en: 22 - 10 - 2023
+            Creado en: {{recipe_Full.fecha_creacion}}
           </ion-col>
           <ion-col size="6" class="info-item">
             <ion-icon name="person" class="info-icon"></ion-icon>
-            Creado por: pacome@gmail.com
+            Creado por: {{recipe_Full.creado_por}}
           </ion-col>
           <ion-col size="6" class="info-item">
             <ion-icon name="stats-chart" class="info-icon"></ion-icon>

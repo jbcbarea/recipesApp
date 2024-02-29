@@ -1,23 +1,36 @@
-
-
-<ion-item lines="none"  (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" [ngClass]="{'hovered': isHovered}" (touchstart)="onTouchStart()" (touchend)="onTouchEnd()">
+<ion-item
+  lines="none"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  [ngClass]="{ hovered: isHovered }"
+  (touchstart)="onTouchStart()"
+  (touchend)="onTouchEnd()"
+>
   <ion-thumbnail slot="start">
-    <img [src]="recipe?.imagenreceta ? recipe.imagenreceta : 'assets/imgs/1.jpg'" />
+    <img
+      [src]="recipe?.imagenreceta ? recipe.imagenreceta : 'assets/imgs/1.jpg'"
+    />
   </ion-thumbnail>
   <ion-label>
-    <h4>{{recipe?.nombrereceta}}</h4>
+    <h4>{{ recipe?.nombrereceta }}</h4>
     <ion-text color="medium">
       <p class="pStyle">
-        {{recipe?.tipo_receta}}
+        {{ recipe?.tipo_receta }}
       </p>
     </ion-text>
     <span>
       <ion-icon name="people"></ion-icon>
-      {{recipe?.comensales}} 
+      {{ recipe?.comensales }}
     </span>
-  
-     -   <ion-icon name="timer"></ion-icon> {{recipe?.tiempo_preparacion}} mins 
-    <ion-text ><p class="distance"><span  [ngClass]="getDifficulty()">Dificultad - {{recipe?.dificultad}}</span></p>
+
+    - <ion-icon name="timer"></ion-icon> {{ recipe?.tiempo_preparacion }} mins
+    <ion-text
+      ><p class="distance">
+        <span [style.color]="getDifficultyColor()">
+          Dificultad - {{ recipe?.dificultad }}
+        </span>
+        
+      </p>
     </ion-text>
   </ion-label>
 </ion-item>

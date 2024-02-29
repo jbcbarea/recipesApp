@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IonicSlides } from '@ionic/angular';
 import { RecipeService } from 'src/app/services/recipes.service';
-import {Storage} from '@capacitor/storage';
+import { Storage } from '@capacitor/storage';
 
 //TODO:LLevar a clase de modelos y exportarlos!!! Vale?? venga queda poco ya
 interface Recipe {
@@ -26,14 +26,14 @@ export class HomePage implements OnInit {
   swiperModules = [IonicSlides];
 
   //tiparlo a recetas con clase o interface
-  selectedRecipeType!:string;
+  selectedRecipeType!: string;
   recipes: Recipe[] = [];
   recipesAll: Recipe[] = [];
   recipesFound: string;
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router:Router
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -74,35 +74,36 @@ export class HomePage implements OnInit {
     */
     const result = await Storage.get({ key: 'userEmail' });
     this.userEmail = localStorage.getItem('userEmail');
-    console.log('USER-EMAIL!!!', this.userEmail);
     await this.getDataFromServer();
-
   }
   //TODO: Aqui tengo que meterlo en lo de favoritas para que cada vez que lo actualize pues se ponga esa receta
   public async ionViewWillEnter() {
-    if(this.selectedRecipeType && this.selectedRecipeType === 'world') {
+    if(this.selectedRecipeType === undefined) {
+      this.selectedRecipeType= 'world';
+    }
+    console.log(this.selectedRecipeType);
+    if (this.selectedRecipeType && this.selectedRecipeType === 'world') {
       await this.getDataFromServer();
-    } else if(this.selectedRecipeType) {
+    } else if (this.selectedRecipeType) {
       await this.geRecipesWorld(this.selectedRecipeType);
     }
   }
 
-  public navigateToFullRecipes(recipeId:number) {
+  public navigateToFullRecipes(recipeId: number) {
     this.router.navigate(['/tabs/recipes', recipeId], {
       queryParams: {
-        page: 'home'
-      }
+        page: 'home',
+      },
     });
   }
 
   public mostrarCero(): void {
-    this.recipesAll=[];
+    this.recipesAll = [];
   }
 
   private async getDataFromServer(): Promise<void> {
     this.recipeService.getRecipes().subscribe((data: any) => {
       if (Array.isArray(data)) {
-        console.log('data', data);
         this.recipes = data;
         this.recipesAll = data;
       } else {
@@ -111,15 +112,17 @@ export class HomePage implements OnInit {
     });
   }
 
-  private async geRecipesWorld(selectedWorldRecipe:string): Promise<void> {
-    this.recipeService.getRecipesByWorldType(selectedWorldRecipe).subscribe((data: any) => {
-      if (Array.isArray(data)) {
-        this.recipes = data;
-        this.recipesAll = data;
-      } else {
-        console.error('Error al recibir los datos');
-      }
-    });
+  private async geRecipesWorld(selectedWorldRecipe: string): Promise<void> {
+    this.recipeService
+      .getRecipesByWorldType(selectedWorldRecipe)
+      .subscribe((data: any) => {
+        if (Array.isArray(data)) {
+          this.recipes = data;
+          this.recipesAll = data;
+        } else {
+          console.error('Error al recibir los datos');
+        }
+      });
   }
 
   public handleRecipesFound(recipesFound: string): void {
@@ -131,15 +134,13 @@ export class HomePage implements OnInit {
     } else {
       this.recipesAll = this.recipes;
     }
-    console.log(this.recipesAll);
   }
 
   public async onRecipeTypeSelected(recipeType: string): Promise<void> {
     this.selectedRecipeType = recipeType;
-    console.log(this.selectedRecipeType);
-    if(this.selectedRecipeType && this.selectedRecipeType === 'world') {
+    if (this.selectedRecipeType && this.selectedRecipeType === 'world') {
       await this.getDataFromServer();
-    } else if(this.selectedRecipeType) {
+    } else if (this.selectedRecipeType) {
       await this.geRecipesWorld(this.selectedRecipeType);
     }
 

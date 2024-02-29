@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 enum recipesDifficulty {
-  low = 'Baja',
+  low = 'Fácil',
   medium = 'Media',
-  high = 'Difícil'
+  high = 'Difícil',
 }
 
 @Component({
@@ -11,29 +11,27 @@ enum recipesDifficulty {
   templateUrl: './list-recipes.component.html',
   styleUrls: ['./list-recipes.component.scss'],
 })
-export class ListRecipesComponent  implements OnInit {
-
-  //tipar
+export class ListRecipesComponent implements OnInit {
   @Input() recipe: any;
-  query:string;
+  query: string;
   isHovered: boolean = false;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-    
-  }
-
- public getDifficulty(): string {
+  ngOnInit() {}
+  public getDifficultyColor(): string {
     if (this.recipe && this.recipe.dificultad) {
-      if (this.recipe.dificultad === recipesDifficulty.low) {
-        return 'low-difficulty';
-      } else if (this.recipe.dificultad === recipesDifficulty.medium) {
-        return 'medium-difficulty';
-      } else if (this.recipe.dificultad === recipesDifficulty.high) {
-        return 'high-difficulty';
+      switch (this.recipe.dificultad.trim().toLowerCase()) {
+        case 'fácil':
+          return 'green';
+        case 'media':
+          return 'var(--ion-color-warning)';
+        case 'difícil':
+          return 'red';
+        default:
+          return ''; // o el color predeterminado que desees
       }
     }
-    return ''; // Clase por defecto si no se encuentra una dificultad válida
+    return ''; // o el color predeterminado que desees
   }
 
   onMouseEnter() {
