@@ -59,7 +59,6 @@ export class RecipesFilteredPage implements OnInit {
         tipoRecetaMundo = 'No aplica';
       }
        if (puntuacion === '99') {
-        console.log('asdjasd');
         puntuacion = 'No aplica';
       }
        if (restric_alimentaria === 'no-aply') {
@@ -69,7 +68,6 @@ export class RecipesFilteredPage implements OnInit {
         num_comen_parametro = 'No aplica';
       }
       
-    
       
       this.searchParams.push({title:'Tipo de tipoReceta',elements:tipoReceta},
       {title:'Tiempo de preparación',elements:tiempoPreparacion},
@@ -81,9 +79,7 @@ export class RecipesFilteredPage implements OnInit {
       {title:'Número de comensales',elements:num_comen_parametro});
 
        this.recipesService.getFilteredRecipes(params).subscribe((data: any) => {
-        // Ocultar el loader cuando los datos se cargan
-        console.log(data);
-        //this.dismissLoading();
+      
         this.recipes = data.finalResultofQuery;
         this.recipesAll = data.finalResultofQuery;
         this.comenFilter = data.comenFilter;

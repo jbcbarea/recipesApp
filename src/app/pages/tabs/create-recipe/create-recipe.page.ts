@@ -60,15 +60,15 @@ export class CreateRecipePage implements OnInit {
       },
       (error) => {
         if (error) {
-          console.log('Hay error!!1');
+       
           this.showError = true;
           this.serverError = error;
         } else {
-          console.log('No hay error');
+    
         }
         //this.errorMessage = error;
         // Aquí puedes mostrar el mensaje de error al usuario, por ejemplo, en una alerta o en el HTML
-        console.log('Error:', error);
+      
       }
     );
   }
@@ -81,29 +81,16 @@ export class CreateRecipePage implements OnInit {
   }
   //TODO: Poner un Toast para indicar que se ha creado y resetear el formulario
   public async createRecipes(): Promise<void> {
-    console.log(this.dynamicForm);
+    
     this.recipeStep = [];
-    console.log(this.dynamicForm.controls['recipe-steps'].value.step);
+  
     this.dynamicForm.controls['recipe-steps'].value.forEach((element) => {
       this.recipeStep.push(element.step);
     });
 
-    console.log('recipeStep', this.recipeStep);
+    
     this.orderTimeConsumeData();
-    console.log(this.timeConsumeParams);
-    console.log(
-      'Ingredientes',
-      this.dynamicForm.controls['recipe-ingredients'].value.length
-    );
-    console.log('STEPS:', this.recipeStep.length);
-    console.log(
-      'FORM:',
-      this.dynamicForm.valid,
-      'FILE:',
-      this.selectedUploadFile,
-      'STEPS,INGREDE:',
-      this.ingredientsStepsValid()
-    );
+
     if (
       this.dynamicForm.valid &&
       this.selectedUploadFile &&
@@ -127,10 +114,7 @@ export class CreateRecipePage implements OnInit {
 
       this.createRecipeService.createRecipe(params).subscribe(
         (data: any) => {
-          console.log(
-            'Datos de la respuesta del server al crear la receta!!!!',
-            data
-          );
+     
           this.presentSuccessToast();
           this.dynamicForm.reset();
           this.resetInputFileOnSubmitted = true;
@@ -190,13 +174,11 @@ export class CreateRecipePage implements OnInit {
 
   public validFieldEventHandler(isValid: boolean): void {
     this.isFieldValid = isValid;
-    console.log('VALIDACION DEL CAMPO!!', this.isFieldValid);
   }
 
 
   private orderTimeConsumeData(): void {
     const timeConsumeArray = this.dynamicForm.controls['time-consume'].value;
-    console.log(timeConsumeArray);
     if (timeConsumeArray) {
       if (timeConsumeArray.some((element) => element.order)) {
         timeConsumeArray.sort((a, b) => (a.order || 0) - (b.order || 0));
@@ -211,12 +193,10 @@ export class CreateRecipePage implements OnInit {
         this.timeConsumeParams = 'no-aply';
       }
     }
-    console.log(this.timeConsumeParams);
   }
 
   //TODO: Para recibir que la imágenes se va a guardar en el server si la imágenen se recibe bien subo a la base de datos todo lo demás!
   public onFileUploaded(fileName: string) {
-    console.log('FileName', fileName);
     this.selectedUploadFile = `images/img/${fileName}`;
   }
 

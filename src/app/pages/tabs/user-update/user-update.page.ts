@@ -30,12 +30,8 @@ export class UserUpdatePage implements OnInit {
 
     if (event.detail.checked) {
       this.resetPassword = true;
-      console.log(this.resetPassword);
-
       oldPassword.setValidators([Validators.required, Validators.minLength(8)]);
-
       password.setValidators([Validators.required, Validators.minLength(8)]);
-
       passwordRepeat.setValidators([
         Validators.required,
         Validators.minLength(8),
@@ -60,7 +56,6 @@ export class UserUpdatePage implements OnInit {
     const phone = this.updateForm.get('phone');
 
     if (this.resetPassword) {
-      console.log('Cambiando todo vale??');
       if (this.updateForm.valid) {
         if (password.value === passwordRepeat.value) {
           this.updateUserAccount
@@ -72,13 +67,12 @@ export class UserUpdatePage implements OnInit {
               phone.value
             )
             .subscribe((response: any) => {
-              console.log(response);
               if (response) {
                 //Poner un Toast mirar
                 if (response.success === true) {
                   this.presentSuccessToast();
                   this.updateForm.reset();
-                }else{
+                } else {
                   this.presentErrorToastOldPassword();
                   this.updateForm.reset();
                 }
@@ -90,11 +84,10 @@ export class UserUpdatePage implements OnInit {
           this.repeatedPassword = true;
           setTimeout(() => {
             this.repeatedPassword = false;
-          }, 3000); 
+          }, 3000);
         }
       }
     } else {
-      console.log('Phone y Email');
       if (this.updateForm.valid) {
         this.updateUserAccount
           .updateUserCredentialsNamePhone(
@@ -104,7 +97,6 @@ export class UserUpdatePage implements OnInit {
           )
           .subscribe((response) => {
             if (response) {
-              console.log(response);
               //Poner un Toast mirar
               this.presentSuccessToast();
               this.updateForm.reset();
@@ -116,7 +108,7 @@ export class UserUpdatePage implements OnInit {
         this.repeatedPassword = true;
         setTimeout(() => {
           this.repeatedPassword = false;
-        }, 3000); 
+        }, 3000);
       }
     }
   }

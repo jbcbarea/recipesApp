@@ -19,16 +19,12 @@ export class BannerComponent  implements OnInit {
 
   recipesTypes:RecipeTypes[]=[
     {image:'world-recipes.png',title:'Recetas del Mundo',icon:'world-icon.png',recipeType:'world'},
-    {image:'spanish-food.png',title:'Recetas Comida Española',icon:'spain-icon.png',recipeType:'spain'},
-    {image:'german-food.png',title:'Recetas Comida Alemana',icon:'germany-icon.png',recipeType:'germany'},
-    {image:'greek-food.png',title:'Recetas Comida Griega',icon:'greece-icon.png',recipeType:'greece'},
-    {image:'italian-food.png',title:'Recetas Comida Italiana',icon:'italy-icon.png',recipeType:'italy'},
-    {image:'mexican-food.png',title:'Recetas Comida Mejicána',icon:'mexico-icon.png',recipeType:'mexico'},
-    {image:'japanese-food.png',title:'Recetas Comida Japonesa',icon:'japan-icon.png',recipeType:'japan'},
-    {image:'chinese-food.png',title:'Recetas Comida China',icon:'china-icon.png',recipeType:'china'},
-    {image:'brit-food.png',title:'Recetas Comida Inglésa',icon:'england-icon.png',recipeType:'england'},
-    {image:'french-food.png',title:'Recetas Comida Francesa',icon:'france-icon.png',recipeType:'france'},
-    {image:'portuguese-food.png',title:'Recetas Comida Portuguesa',icon:'portugal-icon.png',recipeType:'portugal'},
+    {image:'spanish-food.png',title:'Recetas Comida Española',icon:'spain-icon.png',recipeType:'Española'},
+    {image:'german-food.png',title:'Recetas Comida Alemana',icon:'germany-icon.png',recipeType:'Alemana'},
+    {image:'greek-food.png',title:'Recetas Comida Griega',icon:'greece-icon.png',recipeType:'Griega'},
+    {image:'italian-food.png',title:'Recetas Comida Italiana',icon:'italy-icon.png',recipeType:'Italiana'},
+    {image:'mexican-food.png',title:'Recetas Comida Mejicána',icon:'mexico-icon.png',recipeType:'Mexicana'},
+    {image:'portuguese-food.png',title:'Recetas Comida Portuguesa',icon:'portugal-icon.png',recipeType:'Portuguesa'}
   ]
   swiperModules = [IonicSlides];
   clickedRecipeIndex: number = 0;

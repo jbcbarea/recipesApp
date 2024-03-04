@@ -200,7 +200,7 @@ export class GeneratePdfService {
               { text: 'Creado por :', style: boldStyle, margin: [0, 2, 0, 0], width: 80 },
               { text: `${recipeDetails.creadoPor}`, margin: [0, 2, 0, 0], width: 150 },
             ]
-          },
+            },   
           {
             columns: [
               { text: 'Puntuación :', style: boldStyle, margin: [0, 2, 0, 0], width: 140 },

@@ -39,7 +39,6 @@ export class CreateIngPage implements OnInit {
   //TODO: Aquí me falta hacer lo de los TOast al crear el ingrediente vale?? Acuerdate amigo!
 
   public async createNewIngredient(): Promise<void> {
-    console.log(this.dynamicForm);
     if (this.dynamicForm.valid && (this.dynamicForm.controls['ing-feature'].value[0].calories !== null && 
     this.dynamicForm.controls['ing-feature'].value[0].fat !== null && this.dynamicForm.controls['ing-feature'].value[0].protein !== null )) {
       const params: any = {
@@ -57,12 +56,12 @@ export class CreateIngPage implements OnInit {
   }
 
   private addNewIngredient(params: any): void {
+    console.log('PARAMS!',params);
     this.ingredientService.addNewIngredient(params).subscribe((data: any) => {
-      console.log('Nuevo Ing',data);
       if(data) {
         this.sharedDataService.mensaje = 'IngCreado';
         this.presentSuccessToast();
-        this.dynamicForm.reset();
+        this.cleanForm();
         //this.showError = false;
         //this.timeError = false;
       } else {

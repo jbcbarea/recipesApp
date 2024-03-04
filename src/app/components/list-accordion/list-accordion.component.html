@@ -34,7 +34,7 @@
     </div>
     <div slot="content">
       <ion-row class="ion-wrap ion-align-items-center" *ngFor="let item of accordionRowData; let i = index">
-        <ion-col size-lg="4" size-md="9">
+        <ion-col size-lg="5" size-md="9">
           <ion-item lines="none" class="check_box">
             <ion-checkbox
               [id]="question.id"
@@ -50,17 +50,17 @@
             </ion-checkbox>
           </ion-item>
         </ion-col>
-        <ion-col size-lg="3" class="ion-hide-md-down">
+        <ion-col size-lg="2" class="ion-hide-md-down">
           <ion-item lines="none">
-            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].fats }}/100 g.</ion-label>
+            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].calories }}/100 g.</ion-label>
           </ion-item>
         </ion-col>
         <ion-col size-lg="2" size-md="3">
           <ion-item lines="none">
-            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].calories }}/100 g</ion-label>
+            <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].fats }}/100 g</ion-label>
           </ion-item>
         </ion-col>
-        <ion-col size-lg="3" class="ion-hide-md-down">
+        <ion-col size-lg="2" class="ion-hide-md-down">
           <ion-item lines="none">
             <ion-label class="text-sm" text-wrap>{{ accordionRowData[i].proteins }}/100 g</ion-label>
           </ion-item>

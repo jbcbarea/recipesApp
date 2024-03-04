@@ -20,59 +20,51 @@ interface Recipe {
   styleUrls: ['./favourites.page.scss'],
 })
 export class FavouritesPage implements OnInit {
+  recipes: Recipe[] = [];
+  recipesAll: Recipe[] = [];
+  recipesFound: string = null;
+  user: string;
+  constructor(
+    private readonly favRecipeService: FavouriteRecipesService,
+    private router: Router
+  ) {}
 
-  recipes: Recipe[]=[];
-  recipesAll:Recipe[]=[];
-  recipesFound:string =null;
-  user:string;
-  constructor(private readonly favRecipeService:FavouriteRecipesService,private router:Router) { }
+  async ngOnInit(): Promise<void> {}
 
-   async ngOnInit():Promise< void> {
-    console.log('Hola he entrado ');
-   
-  //this.user = localStorage.getItem('userEmail');
-  //await this.getFavouritesRecipe(localStorage.getItem('userEmail'));
-  //console.log(this.recipesAll.length);
-  //console.log('Recipe F',this.recipesFound);
-  }
-
-  public async ionViewWillEnter():Promise<void> {
+  public async ionViewWillEnter(): Promise<void> {
     this.user = localStorage.getItem('userEmail');
     await this.getFavouritesRecipe(localStorage.getItem('userEmail'));
-    console.log('jksldhfkjsdhf');
   }
 
-  public navigateToFullRecipes(recipeId:number) {
+  public navigateToFullRecipes(recipeId: number) {
     this.router.navigate(['/tabs/recipes', recipeId], {
       queryParams: {
-        page: 'favourites'
-      }
+        page: 'favourites',
+      },
     });
   }
 
-private async getFavouritesRecipe(userMail:string): Promise<void> {
-  this.favRecipeService.getFavouriteRecipe(userMail).subscribe((data:any)=>{
-    console.log(data);
-    this.recipes = data;
-    this.recipesAll = data;
-    console.log(this.recipesAll);
-  });
-}
-public handleRecipesFound(recipesFound: string): void {
-  if(recipesFound === '') {
-    this.recipesFound = null;
-  }else {
-    this.recipesFound = recipesFound;
+  private async getFavouritesRecipe(userMail: string): Promise<void> {
+    this.favRecipeService
+      .getFavouriteRecipe(userMail)
+      .subscribe((data: any) => {
+        this.recipes = data;
+        this.recipesAll = data;
+      });
   }
- 
-  console.log('RecipesF',this.recipesFound);
-  if(recipesFound) {
-   this.recipesAll = this.recipes.filter((element:any) => {
-    return element.nombrereceta.toLowerCase().includes(recipesFound);
-    });
-  }else {
-    this.recipesAll = this.recipes;
+  public handleRecipesFound(recipesFound: string): void {
+    if (recipesFound === '') {
+      this.recipesFound = null;
+    } else {
+      this.recipesFound = recipesFound;
+    }
+
+    if (recipesFound) {
+      this.recipesAll = this.recipes.filter((element: any) => {
+        return element.nombrereceta.toLowerCase().includes(recipesFound);
+      });
+    } else {
+      this.recipesAll = this.recipes;
+    }
   }
- console.log(this.recipesAll);
-}
 }

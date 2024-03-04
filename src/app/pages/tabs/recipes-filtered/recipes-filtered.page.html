@@ -7,6 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-card>
   <app-search-bar [recipes]="recipes" (recipesFoundEvent)="handleRecipesFound($event)"></app-search-bar>
   <ion-list>
     <ion-list-header class="ion-margin-bottom">
@@ -39,5 +40,6 @@
     </ion-label>
       </ng-container>
   </ion-list>
+</ion-card>
 </ion-content>
 

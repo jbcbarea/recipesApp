@@ -74,14 +74,10 @@ export class LoginPage implements OnInit {
       this.authUsersService.login(this.signInForm.value.email, this.signInForm.value.password)
         .toPromise()
         .then(async (response) => {
-          console.log(response,'A ver que esta mandando de respuesta!!');
           if (response && response.response !== 'Credenciales inválidas') {
-            console.log(response);
-            console.log(response.response);
             const token = response.response;
             localStorage.setItem('token', token);
             const decodedToken = this.getDecodedToken(token);
-            console.log('decodedToken',decodedToken);
             if (decodedToken) {
               if (decodedToken.rol === 'admin') {
                 this.router.navigate(['/login']);
@@ -103,7 +99,6 @@ export class LoginPage implements OnInit {
               this.credentials = false;
             }
           } else {
-            console.log('Vale me Hace el return de las credenciales inválidas')
             console.error('Credenciales inválidas.');
             this.credentials = true;
           }

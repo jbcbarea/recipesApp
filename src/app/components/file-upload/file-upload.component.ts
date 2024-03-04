@@ -218,7 +218,6 @@ this.isMobileVariable = await this.isMobile();
     this.fileUploadService.uploadFile(formData).subscribe(
       (response) => {
         this.uploadAttemptSuccess = true;
-        console.log('Archivo subido exitosamente:', response);
         this.fileUploaded.emit(response.filename.originalname);
       },
       (error) => {

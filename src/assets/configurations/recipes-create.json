@@ -29,54 +29,34 @@
           "required": true,
           "choices": [
             {
-              "key": "spain",
+              "key": "Española",
               "value": "Comida Española",
               "order": 1
             },
             {
-              "key": "france",
-              "value": "Comida Francesa",
+              "key": "Portuguesa",
+              "value": "Comida Portuguesa",
               "order": 2
             },
             {
-              "key": "portugal",
-              "value": "Comida Portuguesa",
+              "key": "Mexicana",
+              "value": "Comida Mejicána",
               "order": 3
             },
             {
-              "key": "mexico",
-              "value": "Comida Mejicána",
+              "key": "Griega",
+              "value": "Comida Griega",
               "order": 4
             },
             {
-              "key": "china",
-              "value": "Comida China",
+              "key": "Alemana",
+              "value": "Comida Alemana",
               "order": 5
             },
             {
-              "key": "japan",
-              "value": "Comida Japonesa",
-              "order": 6
-            },
-            {
-              "key": "greece",
-              "value": "Comida Griega",
-              "order": 7
-            },
-            {
-              "key": "germany",
-              "value": "Comida Alemana",
-              "order": 8
-            },
-            {
-              "key": "italy",
+              "key": "Italiana",
               "value": "Comida Italiana",
-              "order": 9
-            },
-            {
-              "key": "england",
-              "value": "Comida Inglésa",
-              "order": 10
+              "order": 6
             }
           ]
         },
@@ -248,14 +228,14 @@
               "img": "apperitive.png"
             },
             {
-              "key": "Comida",
+              "key": "Almuerzo",
               "value": "Almuerzo",
               "order": 3,
               "img": "meal.png"
             },
             {
-              "key": "Merienda",
-              "value": "Merienda",
+              "key": "Postre",
+              "value": "Postre",
               "order": 4,
               "img": "supper.png"
             },
@@ -298,8 +278,8 @@
               "img": "peanut.png"
             },
             {
-              "key": "no-aply",
-              "value": "No aplica",
+              "key": "sin-restricciones",
+              "value": "Sin restricciones",
               "order": 5,
               "img": "no-restriction.png"
             }

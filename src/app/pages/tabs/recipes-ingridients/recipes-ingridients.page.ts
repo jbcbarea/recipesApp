@@ -62,7 +62,6 @@ export class RecipesIngridientsPage implements OnInit {
   async ngOnInit(): Promise<void> {
     this.userEmail = localStorage.getItem('userEmail');
     this.initConfiguration = await this.getDataFromFileConfiguration();
-    console.log('initConfigurayion', this.initConfiguration);
     this.dynamicForm = await this.formUtils.buildForm(this.initConfiguration);
 
     this.formValueChangesSubscription = this.dynamicForm.valueChanges.subscribe(
@@ -174,12 +173,10 @@ export class RecipesIngridientsPage implements OnInit {
   //TODO: Lo dejo aqui pero lo de android cámara y que te guarded el nombre del user en el localStorage de Android donde sea
   public orderTimeConsumeData(): void {
     const timeConsumeArray = this.dynamicForm.controls['time-consume'].value;
-    console.log(timeConsumeArray);
     if (timeConsumeArray && timeConsumeArray.length > 1) {
       this.elementsSelected = true;
       // Ordenar el array de objetos en función del campo 'order'
       timeConsumeArray.sort((a, b) => a.order - b.order);
-      console.log(timeConsumeArray);
       this.timeConsumeParams = '';
       //TODO: Siempre que valga algo a ver amigui
       for (const element of timeConsumeArray) {
@@ -199,14 +196,6 @@ export class RecipesIngridientsPage implements OnInit {
       this.timeConsumeParams = 'no-aply';
       this.elementsSelected = false;
     }
-
-    //this.timeConsumeParams ='no-aply';
-    /*
-    const orderedArray = timeConsumeArray.filter(element => element.order).map(element => {
-        console.log('Entro y aquí ya ordeno y meto en array de params');
-        return element;
-    });
-  */
   }
 
   //TODO: Para recibir que la imágenes se va a guardar en el server si la imágenen se recibe bien subo a la base de datos todo lo demás!

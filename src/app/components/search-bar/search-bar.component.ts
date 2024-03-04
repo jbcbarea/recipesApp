@@ -19,7 +19,6 @@ export class SearchBarComponent  implements OnInit {
 
   public onSearchChange(event): void {
     this.query = event.detail.value.toLowerCase();
-    console.log(this.query);
     this.recipesFoundEvent.emit(this.query);
   }
 }

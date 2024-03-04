@@ -168,18 +168,7 @@ export class SelectListComponent extends AbstractQuestionComponent implements On
   constructor() {super()}
 
   async ngOnInit(): Promise<void> {
- 
-    console.log(this.showError);
-      console.log(this.question);
-      console.log(this.question,'1. Aver si entra varias veces'+3);
-      this
 
-      console.log(this.auxChoices);
-
-
-    /*
-
-    */
   }
 
   validField(): boolean {

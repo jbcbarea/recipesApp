@@ -20,8 +20,6 @@ export class FormQuestionsComponent extends AbstractQuestionComponent implements
 
   ngOnInit(): void {
 
-    console.log('Desde FORM-QUESTIONS',this.question);
-    
 
     /*
     if (this.question.dependencies) {

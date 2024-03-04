@@ -57,7 +57,7 @@ export class ListAccordionComponent
   }
 
   async ngOnInit(): Promise<void> {
-    console.log(this.question);
+
     await this.getIngridientsFromServer(this.extraKey);
     this.parentForm.valueChanges.subscribe(() => {
       // Aquí checkBox!!
